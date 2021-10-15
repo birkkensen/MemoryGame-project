@@ -17,7 +17,7 @@ body {
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-card-container {
     display: grid;
-    grid-template-columns: repeat(4, auto);
+    grid-template-columns: repeat(6, auto);
     grid-gap: 15px;
     justify-content: center;
     align-content: center;
@@ -47,8 +47,8 @@ body {
   }
 
   
-  .flip-card-inner p {
-    font-size: 4em;
+  .flip-card-inner {
+    font-size: 3em;
   }
   
   .flip-card-inner:active {
@@ -82,14 +82,21 @@ body {
   /* Style the back side */
   .flip-card-back {
     display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #ff9aa6;
     background-color: #8bd388;
     background-color: #ebb66d;
     transform: rotateY(180deg);
-    justify-content: center;
-    align-items: center;
   }
 
+
+@media screen and (max-width: 771px) {
+  .flip-card-container {
+    grid-template-columns: repeat(4, auto);
+  }
+
+}
   @media screen and (max-width: 576px) {
     .flip-card-inner {
       width: 75px;
