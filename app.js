@@ -130,7 +130,7 @@ function card(card) {
     <div class="flip-card-front">
   </div>
   <div class="flip-card-back">
-      <p>${card.content}</p>
+      ${card.content}
   </div>
 </div>
   `
@@ -209,7 +209,6 @@ function countMatchedCards() {
     setTimeout(() => {
       startGame()
     }, 1000)
-    
   }
 }
 // cards.forEach((card) => card.addEventListener("click", flipCard));
