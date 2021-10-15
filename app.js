@@ -45,10 +45,10 @@ let animalTheme = [
     content: '🐨',
     id: 'k'
   },
-  {
-    content: '🐝',
-    id: 'l'
-  },
+  // {
+  //   content: '🐝',
+  //   id: 'l'
+  // },
 ];
 let halloweenTheme = [
   {
@@ -95,11 +95,18 @@ let halloweenTheme = [
     content: '🌕',
     id: 'k',
   },
-  {
-    content: '🧛',
-    id: 'l',
-  },
+  // {
+  //   content: '🧛',
+  //   id: 'l',
+  // },
   ];
+
+
+
+let cardArray = duplicateArray(animalTheme);
+let hasFlippedCard = false;
+let lockBoard = false;
+let firstCard, secondCard;
 
 //Duplicate array and merge it with the original
 function duplicateArray(array) {
@@ -107,11 +114,6 @@ function duplicateArray(array) {
   array = array.concat(copy);
   return array;
 }
-
-let cardArray = duplicateArray(halloweenTheme);
-let hasFlippedCard = false;
-let lockBoard = false;
-let firstCard, secondCard;
 
 function createCards () {
   for(i = 0; i < cardArray.length; i++) {
@@ -138,11 +140,12 @@ function card(card) {
 
 function startGame() { 
   document.querySelector(".flip-card-container").innerHTML = `
-  <h1 class="card-flip-title">Memory Game</h1>
-  <div class="card-score-container">
-    <h3>Time</h3>
-    <h3>Flips: 0</h3>
+  <h1 class="card-flip-highScore">High Score: 00:59</h1>
+  <div class="card-flip-currentTime">
+    <h2>Time</h2>
+    <h3>01:32</h3>
   </div>
+
   `; 
   createCards();
   shuffleCards();
@@ -207,7 +210,7 @@ function countMatchedCards() {
   const isFlipped = document.querySelectorAll(".flip");
   if(isFlipped.length === cardArray.length) {
     setTimeout(() => {
-      startGame()
+    startGame()
     }, 1000)
   }
 }
