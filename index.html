@@ -2,22 +2,193 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./css/style.css">
-  <title>Memory Card Game - how fun!!!!!</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory</title>
+    <link rel="stylesheet" href="css/style.css">
+
 </head>
 
-<body>
-  <nav>
-    <h1>Project</h1>
-    <ul>
-      <li>game</li>
-      <li>contact</li>
-      <li>about</li>
-    </ul>
-  </nav>
+<body onload="startGame()">
+
+    <div class="flip-card-container">
+        <h1 class="card-flip-title">Memory Game</h1>
+        <div class="card-score-container">
+            <h3>Time</h3>
+            <h3>Flips: <span id="numOfFlips">0</span></h3>
+        </div>
+        <!-- <div class="flip-card-inner" data-letter="a">
+            <div class="flip-card-front">
+            </div>
+            <div class="flip-card-back">
+                <p>🐒</p>
+            </div>
+        </div>
+        <div class="flip-card-inner" data-letter="a">
+            <div class="flip-card-front">
+            </div>
+            <div class="flip-card-back">
+                <p>🐒</p>
+            </div>
+        </div>
+        <div class="flip-card-inner" data-letter="b">
+            <div class="flip-card-front">
+            </div>
+            <div class="flip-card-back">
+                <p>🦊</p>
+            </div>
+        </div>
+        <div class="flip-card-inner" data-letter="b">
+            <div class="flip-card-front">
+            </div>
+            <div class="flip-card-back">
+                <p>🦊</p>
+            </div>
+        </div>
+        <div class="flip-card-inner" data-letter="c">
+            <div class="flip-card-front">
+            </div>
+            <div class="flip-card-back">
+                <p>🐯</p>
+            </div>
+        </div>
+        <div class="flip-card-inner" data-letter="c">
+            <div class="flip-card-front">
+            </div>
+            <div class="flip-card-back">
+                <p>🐯</p>
+            </div>
+        </div>
+        <div class="flip-card-inner" data-letter="d">
+            <div class="flip-card-front">
+            </div>
+            <div class="flip-card-back">
+                <p>🐕</p>
+            </div>
+        </div>
+        <div class="flip-card-inner" data-letter="d">
+            <div class="flip-card-front">
+            </div>
+            <div class="flip-card-back">
+                <p>🐕</p>
+            </div>
+        </div>
+        <div class="flip-card-inner" data-letter="e">
+            <div class="flip-card-front">
+            </div>
+            <div class="flip-card-back">
+                <p>🐷</p>
+            </div>
+        </div>
+        <div class="flip-card-inner" data-letter="e">
+            <div class="flip-card-front">
+            </div>
+            <div class="flip-card-back">
+                <p>🐷</p>
+            </div>
+        </div>
+        <div class="flip-card-inner" data-letter="f">
+            <div class="flip-card-front">
+            </div>
+            <div class="flip-card-back">
+                <p>🐪</p>
+            </div>
+        </div>
+        <div class="flip-card-inner" data-letter="f">
+            <div class="flip-card-front">
+            </div>
+            <div class="flip-card-back">
+                <p>🐪</p>
+            </div>
+        </div>
+        <div class="flip-card-inner" data-letter="g">
+            <div class="flip-card-front">
+            </div>
+            <div class="flip-card-back">
+                <p>🐄</p>
+            </div>
+        </div>
+        <div class="flip-card-inner" data-letter="g">
+            <div class="flip-card-front">
+            </div>
+            <div class="flip-card-back">
+                <p>🐄</p>
+            </div>
+        </div>
+        <div class="flip-card-inner" data-letter="h">
+            <div class="flip-card-front">
+            </div>
+            <div class="flip-card-back">
+                <p>🐘</p>
+            </div>
+        </div>
+        <div class="flip-card-inner" data-letter="h">
+            <div class="flip-card-front">
+            </div>
+            <div class="flip-card-back">
+                <p>🐘</p>
+            </div>
+        </div>
+        <div class="flip-card-inner" data-letter="i">
+            <div class="flip-card-front">
+            </div>
+            <div class="flip-card-back">
+                <p>🦏</p>
+            </div>
+        </div>
+        <div class="flip-card-inner" data-letter="i">
+            <div class="flip-card-front">
+            </div>
+            <div class="flip-card-back">
+                <p>🦏</p>
+            </div>
+        </div>
+        <div class="flip-card-inner" data-letter="j">
+            <div class="flip-card-front">
+            </div>
+            <div class="flip-card-back">
+                <p>🦒</p>
+            </div>
+        </div>
+        <div class="flip-card-inner" data-letter="j">
+            <div class="flip-card-front">
+            </div>
+            <div class="flip-card-back">
+                <p>🦒</p>
+            </div>
+        </div>
+        <div class="flip-card-inner" data-letter="k">
+            <div class="flip-card-front">
+            </div>
+            <div class="flip-card-back">
+                <p>🐹</p>
+            </div>
+        </div>
+        <div class="flip-card-inner" data-letter="k">
+            <div class="flip-card-front">
+            </div>
+            <div class="flip-card-back">
+                <p>🐹</p>
+            </div>
+        </div>
+        <div class="flip-card-inner" data-letter="l">
+            <div class="flip-card-front">
+            </div>
+            <div class="flip-card-back">
+                <p>🐨</p>
+            </div>
+        </div>
+        <div class="flip-card-inner" data-letter="l">
+            <div class="flip-card-front">
+            </div>
+            <div class="flip-card-back">
+                <p>🐨</p>
+            </div>
+        </div> -->
+    </div>
+
+    <script type="text/javascript" src="app.js"></script>
 </body>
 
 </html>
