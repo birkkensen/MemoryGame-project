@@ -8,25 +8,25 @@ let firstCard, secondCard;
 
 function flipCard() {
   if (lockBoard) return;
-  if (this === firstCard) return;
+  if (this === firstCard) return; //so not to click 2 times at same card and get a pair
   this.classList.add("flip");
 
   if (!hasFlippedCard) {
+    //bad name. "firstcardflipped"
     hasFlippedCard = true;
     firstCard = this;
-    return;
+  } else {  //changed this
+    secondCard = this;
+    hasFlippedCard = false;
+
+    checkForMatch();
   }
-
-  secondCard = this;
-  hasFlippedCard = false;
-
-  checkForMatch();
 }
 
 function checkForMatch() {
   if (firstCard.dataset.letter === secondCard.dataset.letter) {
     disableCards();
-    return;
+    return;  //different way, i would do if/else probably
   }
   unflipCards();
 }
@@ -46,12 +46,14 @@ function unflipCards() {
   }, 1000);
 }
 
-function resetBoard() {  //ES6 destructuring assignment
+function resetBoard() {
+  //ES6 destructuring assignment
   [hasFlippedCard, lockBoard] = [false, false];
   [firstCard, secondCard] = [null, null];
 }
 
-(function shuffle() {   //IIFE
+(function shuffle() {
+  //IIFE
   cards.forEach((card) => {
     let ramdomPos = Math.floor(Math.random() * 24);
     card.style.order = ramdomPos;
