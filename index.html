@@ -10,10 +10,15 @@
 
 </head>
 
-<body>
+<body onload="startGame()">
 
     <div class="flip-card-container">
-        <div class="flip-card-inner" data-letter="a">
+        <h1 class="card-flip-title">Memory Game</h1>
+        <div class="card-score-container">
+            <h3>Time</h3>
+            <h3>Flips: <span id="numOfFlips">0</span></h3>
+        </div>
+        <!-- <div class="flip-card-inner" data-letter="a">
             <div class="flip-card-front">
             </div>
             <div class="flip-card-back">
@@ -180,7 +185,7 @@
             <div class="flip-card-back">
                 <p>🐨</p>
             </div>
-        </div>
+        </div> -->
     </div>
 
     <script type="text/javascript" src="app.js"></script>

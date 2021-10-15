@@ -1,3 +1,19 @@
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100vw;
+  min-height: 100vh;
+  background-color: rgb(255, 244, 245);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-card-container {
     display: grid;
@@ -5,12 +21,18 @@
     grid-gap: 15px;
     justify-content: center;
     align-content: center;
-    background-color: #fad5cd;
-    width: 100vw;
-    height: 100vh;
-    border: 1px solid #f1f1f1;
     perspective: 1000px;
     /* Remove this if you don't want the 3D effect */
+  }
+
+  .flip-card-container h1 {
+    grid-column: 1 / -1;
+    text-align: center;
+  }
+  .card-score-container {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
   }
   
   /* This container is needed to position the front and back side */
@@ -23,6 +45,7 @@
     transform-style: preserve-3d;
     transform: scale(1);
   }
+
   
   .flip-card-inner p {
     font-size: 4em;
@@ -46,20 +69,42 @@
     -webkit-backface-visibility: hidden;
     /* Safari */
     backface-visibility: hidden;
+    border-radius: 10px;
   }
   
   /* Style the front side (fallback if image is missing) */
   .flip-card-front {
     background-color: #fd5569;
+    background-color: #45c441;
+    background-color: #F79F24;
   }
   
   /* Style the back side */
   .flip-card-back {
     display: flex;
-    background-color: pink;
+    background-color: #ff9aa6;
+    background-color: #8bd388;
+    background-color: #ebb66d;
     transform: rotateY(180deg);
     justify-content: center;
     align-items: center;
+  }
+
+  @media screen and (max-width: 576px) {
+    .flip-card-inner {
+      width: 75px;
+      height: 75px;
+    }
+  }
+  @media screen and (max-width: 400px) {
+    .flip-card-inner {
+      width: 60px;
+      height: 60px;
+    }
+
+    .flip-card-inner p {
+      font-size: 2.5em;
+    }
   }
   
   /*# sourceMappingURL=style.css.map */
