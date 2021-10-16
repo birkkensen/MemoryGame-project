@@ -135,10 +135,13 @@ function card(card) {
   `;
 }
 
-const overlay = document.querySelector(".overlay");
-//const body = document.querySelector('body');
-overlay.addEventListener("click", () => overlay.classList.remove("visible"));
-startGame();
+const overlays = document.querySelectorAll(".overlay");
+overlays.forEach((overlay) =>
+  overlay.addEventListener("click", () => {
+    overlay.classList.remove("visible");
+    startGame();
+  })
+);
 
 function startGame() {
   document.querySelector(".flip-card-container").innerHTML = `
@@ -172,7 +175,7 @@ function flipCard() {
 function checkForMatch() {
   if (firstCard.dataset.letter === secondCard.dataset.letter) {
     disableCards();
-    return; //different way, i would do if/else probably
+    return; 
   }
   unflipCards();
 }
@@ -207,12 +210,25 @@ function shuffleCards() {
   });
 }
 
+function gameOver() {
+  document.querySelector("#victory-text").classList.add("visible");
+}
+
 function countMatchedCards() {
+  const isFlipped = document.querySelectorAll(".flip");
+  if (isFlipped.length === cardArray.length) {
+    setTimeout(() => {
+      gameOver();
+    }, 1000);
+  }
+}
+
+/*function countMatchedCards() {
   const isFlipped = document.querySelectorAll(".flip");
   if (isFlipped.length === cardArray.length) {
     setTimeout(() => {
       startGame();
     }, 1000);
   }
-}
+} */
 // cards.forEach((card) => card.addEventListener("click", flipCard));

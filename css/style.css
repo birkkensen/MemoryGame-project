@@ -24,10 +24,12 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 100;
+  color: #f79f24;
 }
 
 .overlay.visible {
   display: flex;
+  flex-direction: column;
   animation: overlayy 500ms forwards;
 }
 
@@ -40,6 +42,10 @@ body {
     background-color: rgba(0, 0, 0, .8);
     font-size: 10em;
   }
+}
+
+.overlay p {
+  font-size: .2em;
 }
 
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
