@@ -2,104 +2,104 @@
 
 let animalTheme = [
   {
-    content: '🐒',
-    id: 'a'
+    content: "🐒",
+    id: "a",
   },
   {
-    content: '🦊',
-    id: 'b'
+    content: "🦊",
+    id: "b",
   },
   {
-    content: '🐯',
-    id: 'c'
+    content: "🐯",
+    id: "c",
   },
   {
-    content: '🐕',
-    id: 'd'
+    content: "🐕",
+    id: "d",
   },
   {
-    content: '🐷',
-    id: 'e'
+    content: "🐷",
+    id: "e",
   },
   {
-    content: '🐄',
-    id: 'f'
+    content: "🐄",
+    id: "f",
   },
   {
-    content: '🐪',
-    id: 'g'
+    content: "🐪",
+    id: "g",
   },
   {
-    content: '🐘',
-    id: 'h'
+    content: "🐘",
+    id: "h",
   },
   {
-    content: '🦒',
-    id: 'i'
+    content: "🦒",
+    id: "i",
   },
   {
-    content: '🐹',
-    id: 'j'
+    content: "🐹",
+    id: "j",
   },
   {
-    content: '🐨',
-    id: 'k'
+    content: "🐨",
+    id: "k",
   },
   {
-    content: '🐝',
-    id: 'l'
+    content: "🐝",
+    id: "l",
   },
 ];
 let halloweenTheme = [
   {
-    content: '🎃',
-    id: 'a',
+    content: "🎃",
+    id: "a",
   },
   {
-    content: '🕯',
-    id: 'b',
+    content: "🕯",
+    id: "b",
   },
   {
-    content: '👻',
-    id: 'c',
+    content: "👻",
+    id: "c",
   },
   {
-    content: '🕸',
-    id: 'd',
+    content: "🕸",
+    id: "d",
   },
   {
-    content: '🕷',
-    id: 'e',
+    content: "🕷",
+    id: "e",
   },
   {
-    content: '💀',
-    id: 'f',
+    content: "💀",
+    id: "f",
   },
   {
-    content: '⚰️',
-    id: 'g',
+    content: "⚰️",
+    id: "g",
   },
   {
-    content: '🦇',
-    id: 'h',
+    content: "🦇",
+    id: "h",
   },
   {
-    content: '😈',
-    id: 'i',
+    content: "😈",
+    id: "i",
   },
   {
-    content: '🧟‍♂️',
-    id: 'j',
+    content: "🧟‍♂️",
+    id: "j",
   },
   {
-    content: '🌕',
-    id: 'k',
+    content: "🌕",
+    id: "k",
   },
   {
-    content: '🧛',
-    id: 'l',
+    content: "🧛",
+    id: "l",
   },
-  ];
+];
 
 //Duplicate array and merge it with the original
 function duplicateArray(array) {
@@ -113,19 +113,18 @@ let hasFlippedCard = false;
 let lockBoard = false;
 let firstCard, secondCard;
 
-function createCards () {
-  for(i = 0; i < cardArray.length; i++) {
-    card(cardArray[i])
+function createCards() {
+  for (i = 0; i < cardArray.length; i++) {
+    card(cardArray[i]);
   }
   const cards = document.querySelectorAll(".flip-card-inner");
-  cards.forEach(card => {
-    card.addEventListener("click", flipCard)
-  })
+  cards.forEach((card) => {
+    card.addEventListener("click", flipCard);
+  });
 }
 
 function card(card) {
-  document.querySelector(".flip-card-container").innerHTML += 
-  `
+  document.querySelector(".flip-card-container").innerHTML += `
 <div class="flip-card-inner" data-letter="${card.id}">
     <div class="flip-card-front">
   </div>
@@ -133,17 +132,22 @@ function card(card) {
       ${card.content}
   </div>
 </div>
-  `
+  `;
 }
 
-function startGame() { 
+const overlay = document.querySelector(".overlay");
+//const body = document.querySelector('body');
+overlay.addEventListener("click", () => overlay.classList.remove("visible"));
+startGame();
+
+function startGame() {
   document.querySelector(".flip-card-container").innerHTML = `
   <h1 class="card-flip-title">Memory Game</h1>
   <div class="card-score-container">
     <h3>Time</h3>
     <h3>Flips: 0</h3>
   </div>
-  `; 
+  `;
   createCards();
   shuffleCards();
 }
@@ -163,13 +167,12 @@ function flipCard() {
   secondCard = this;
   hasFlippedCard = false;
   checkForMatch();
-  
 }
 
 function checkForMatch() {
   if (firstCard.dataset.letter === secondCard.dataset.letter) {
     disableCards();
-    return;  //different way, i would do if/else probably
+    return; //different way, i would do if/else probably
   }
   unflipCards();
 }
@@ -195,21 +198,21 @@ function resetBoard() {
   [firstCard, secondCard] = [null, null];
 }
 
-function shuffleCards() {   //IIFE
+function shuffleCards() {
+  //IIFE
   const cards = document.querySelectorAll(".flip-card-inner");
   cards.forEach((card) => {
     let ramdomPos = Math.floor(Math.random() * 24);
     card.style.order = ramdomPos;
   });
-};
+}
 
 function countMatchedCards() {
   const isFlipped = document.querySelectorAll(".flip");
-  if(isFlipped.length === cardArray.length) {
+  if (isFlipped.length === cardArray.length) {
     setTimeout(() => {
-      startGame()
-    }, 1000)
+      startGame();
+    }, 1000);
   }
 }
 // cards.forEach((card) => card.addEventListener("click", flipCard));
-
