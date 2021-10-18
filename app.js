@@ -125,7 +125,7 @@ function createCards() {
 
 function card(card) {
   document.querySelector(".flip-card-container").innerHTML += `
-<div class="flip-card-inner" data-letter="${card.id}">
+<div class="flip-card-inner" data-letter="${card.id}"> 
     <div class="flip-card-front">
   </div>
   <div class="flip-card-back">
@@ -135,23 +135,26 @@ function card(card) {
   `;
 }
 
-const overlays = document.querySelectorAll(".overlay");
-overlays.forEach((overlay) =>
-  overlay.addEventListener("click", () => {
-    overlay.classList.remove("visible");
-    startGame();
-  })
-);
+const overlayIntro = document.querySelector(".overlay.intro");
+overlayIntro.addEventListener("click", () => {
+  overlayIntro.classList.remove("visible");
+  startGame();
+});
+
+const overlayOutro = document.querySelector(".overlay.outro");
+overlayOutro.addEventListener("click", () => {
+  overlayOutro.classList.remove("visible");
+  startGameAgain();
+});
 
 function startGame() {
-  document.querySelector(".flip-card-container").innerHTML = `
-  <h1 class="card-flip-title">Memory Game</h1>
-  <div class="card-score-container">
-    <h3>Time</h3>
-    <h3>Flips: 0</h3>
-  </div>
-  `;
   createCards();
+  shuffleCards();
+}
+
+function startGameAgain() {
+  //Is there a better way???? 
+  card();
   shuffleCards();
 }
 
@@ -161,7 +164,6 @@ function flipCard() {
   this.classList.add("flip");
   countMatchedCards();
   if (!hasFlippedCard) {
-    //bad name. "firstcardflipped"
     hasFlippedCard = true;
     firstCard = this;
     return;
@@ -175,7 +177,7 @@ function flipCard() {
 function checkForMatch() {
   if (firstCard.dataset.letter === secondCard.dataset.letter) {
     disableCards();
-    return; 
+    return;
   }
   unflipCards();
 }
@@ -212,15 +214,24 @@ function shuffleCards() {
 
 function gameOver() {
   document.querySelector("#victory-text").classList.add("visible");
+  playAudio();
 }
 
 function countMatchedCards() {
   const isFlipped = document.querySelectorAll(".flip");
-  if (isFlipped.length === cardArray.length) {
+  if (isFlipped.length === cardArray.length || true) {
+    //take away true, only there temporarily
     setTimeout(() => {
-      gameOver();
+      gameOver();   
     }, 1000);
   }
+}
+
+function playAudio() {
+  const audio = document.querySelector("#victory-sound");
+  audio.volume = 1;
+  audio.playbackRate = 0.5;
+  audio.play();
 }
 
 /*function countMatchedCards() {
