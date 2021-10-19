@@ -180,14 +180,14 @@ overlays.forEach((overlay) =>
 
 
 
-function createCards () {
-  for(i = 0; i < cardArray.length; i++) {
-    card(cardArray[i])
+function createCards() {
+  for (i = 0; i < cardArray.length; i++) {
+    card(cardArray[i]);
   }
   const cards = document.querySelectorAll(".flip-card-inner");
-  cards.forEach(card => {
-    card.addEventListener("click", flipCard)
-  })
+  cards.forEach((card) => {
+    card.addEventListener("click", flipCard);
+  });
 }
 
 function setCardColor() {
@@ -217,23 +217,48 @@ function setCardColor() {
 }
 
 function card(card) {
-  document.querySelector(".flip-card-container").innerHTML += 
-  `
-<div class="flip-card-inner" data-letter="${card.id}">
+  document.querySelector(".flip-card-container").innerHTML += `
+<div class="flip-card-inner" data-letter="${card.id}"> 
     <div class="flip-card-front">
   </div>
   <div class="flip-card-back">
       ${card.content}
   </div>
 </div>
-  `
+  `;
 }
 
-function startGame() { 
 
+const overlayIntro = document.querySelector(".overlay.intro");
+overlayIntro.addEventListener("click", () => {
+  overlayIntro.classList.remove("visible");
+  startGame();
+});
+
+const overlayOutro = document.querySelector(".overlay.outro");
+overlayOutro.addEventListener("click", () => {
+  overlayOutro.classList.remove("visible");
+  restartGame();
+});
+
+function startGame() {
   createCards();
   setCardColor();
   shuffleCards();
+}
+
+function restartGame() {
+  resetState();
+  startGame();
+}
+
+function resetState() {
+  resetBoard();
+  deleteCards();
+}
+
+function deleteCards() {
+  document.querySelector(".flip-card-container").innerHTML = "";
 }
 
 function flipCard() {
@@ -242,7 +267,6 @@ function flipCard() {
   this.classList.add("flip");
   countMatchedCards();
   if (!hasFlippedCard) {
-    //bad name. "firstcardflipped"
     hasFlippedCard = true;
     firstCard = this;
     return;
@@ -251,13 +275,12 @@ function flipCard() {
   secondCard = this;
   hasFlippedCard = false;
   checkForMatch();
-  
 }
 
 function checkForMatch() {
   if (firstCard.dataset.letter === secondCard.dataset.letter) {
     disableCards();
-    return;  //different way, i would do if/else probably
+    return;
   }
   unflipCards();
 }
@@ -283,21 +306,43 @@ function resetBoard() {
   [firstCard, secondCard] = [null, null];
 }
 
-function shuffleCards() {   //IIFE
+function shuffleCards() {
+  //IIFE
   const cards = document.querySelectorAll(".flip-card-inner");
   cards.forEach((card) => {
     let ramdomPos = Math.floor(Math.random() * 24);
     card.style.order = ramdomPos;
   });
-};
+}
+
+function gameOver() {
+  document.querySelector("#victory-text").classList.add("visible");
+  playAudio();
+}
 
 function countMatchedCards() {
   const isFlipped = document.querySelectorAll(".flip");
-  if(isFlipped.length === cardArray.length) {
+  if (isFlipped.length === cardArray.length) {
+    //take away true, only there temporarily
     setTimeout(() => {
-    startGame()
-    }, 1000)
+      gameOver();
+    }, 1000);
   }
 }
-// cards.forEach((card) => card.addEventListener("click", flipCard));
 
+function playAudio() {
+  const audio = document.querySelector("#victory-sound");
+  audio.volume = 0.5;
+  audio.playbackRate = 0.5;
+  audio.play();
+}
+
+/*function countMatchedCards() {
+  const isFlipped = document.querySelectorAll(".flip");
+  if (isFlipped.length === cardArray.length) {
+    setTimeout(() => {
+      startGame();
+    }, 1000);
+  }
+} */
+// cards.forEach((card) => card.addEventListener("click", flipCard));

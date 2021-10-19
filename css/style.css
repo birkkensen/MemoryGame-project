@@ -1,4 +1,3 @@
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -99,6 +98,7 @@ body {
   font-size: .2em;
 }
 
+
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-card-container {
     display: grid;
@@ -141,10 +141,38 @@ body {
     transform: scale(1);
   }
 
-  
-  .flip-card-inner {
-    font-size: 3em;
+.overlay {
+  display: none;
+  position: fixed;
+  font-size: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  color: #f79f24;
+}
+
+.overlay.visible {
+  display: flex;
+  flex-direction: column;
+  animation: overlayy 500ms forwards;
+}
+
+
+@keyframes overlayy {
+  from {
+    background-color: rgba(0, 0, 0, 0.5);
+    font-size: 0em;
   }
+  to {
+    background-color: rgba(0, 0, 0, .8);
+    font-size: 10em;
+  }
+}
+
   
   .flip-card-inner:active {
     transform: scale(0.85);
@@ -198,8 +226,87 @@ body {
   }
   .flip-card-back.light-orange {
     background-color: var(--light-orange-color);
-  }
 
+
+
+.overlay p {
+  font-size: .2em;
+}
+
+/* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+.flip-card-container {
+  display: grid;
+  grid-template-columns: repeat(6, auto);
+  grid-gap: 15px;
+  justify-content: center;
+  align-content: center;
+  perspective: 1000px;
+  /* Remove this if you don't want the 3D effect */
+}
+
+.flip-card-container h1 {
+  grid-column: 1 / -1;
+  text-align: center;
+}
+.card-score-container {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+  transform: scale(1);
+}
+
+.flip-card-inner {
+  font-size: 3em;
+}
+
+.flip-card-inner:active {
+  transform: scale(0.85);
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card-inner.flip {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  /* Safari */
+  backface-visibility: hidden;
+  border-radius: 10px;
+}
+
+/* Style the front side (fallback if image is missing) */
+.flip-card-front {
+  background-color: #fd5569;
+  background-color: #45c441;
+  background-color: #f79f24;
+}
+
+/* Style the back side */
+.flip-card-back {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ff9aa6;
+  background-color: #8bd388;
+  background-color: #ebb66d;
+  transform: rotateY(180deg);
+}
 
   
 
@@ -216,6 +323,7 @@ body {
   .flip-card-container {
     grid-template-columns: repeat(4, auto);
   }
+
 
   .card-flip-currentTime {
     grid-column: 2 / 4;
@@ -259,3 +367,24 @@ body {
     }
   }
   
+
+}
+@media screen and (max-width: 576px) {
+  .flip-card-inner {
+    width: 75px;
+    height: 75px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .flip-card-inner {
+    width: 60px;
+    height: 60px;
+  }
+
+  .flip-card-inner p {
+    font-size: 2.5em;
+  }
+}
+
+
+
