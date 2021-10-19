@@ -228,6 +228,7 @@ body {
   }
 
 }
+
   @media screen and (max-width: 576px) {
     .flip-card-inner {
       width: 80px;
