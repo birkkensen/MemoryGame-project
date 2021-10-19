@@ -31,8 +31,10 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100%;
   margin-top: 40px;
 }
+
 .overlay {
   display: none;
   position: fixed;
@@ -45,6 +47,7 @@ body {
   align-items: center;
   z-index: 100;
   color: #f79f24;
+  text-align: center;
 }
 
 .overlay.visible {
@@ -52,6 +55,18 @@ body {
   flex-direction: column;
   animation: overlayy 500ms forwards;
 }
+
+@keyframes overlayy {
+  from {
+    background-color: rgba(0, 0, 0, 0.5);
+    font-size: 0em;
+  }
+  to {
+    background-color: rgba(0, 0, 0, .8);
+    font-size: 10em;
+  }
+}
+
 .chooseTheme {
   font-size: 34px;
   margin-top: 40px;
@@ -78,24 +93,13 @@ body {
 #animal:hover {background-color: var(--green-color);}
 
 
-@keyframes overlayy {
-  from {
-    background-color: rgba(0, 0, 0, 0.5);
-    font-size: 0em;
-  }
-  to {
-    background-color: rgba(0, 0, 0, .8);
-    font-size: 10em;
-  }
-}
-
 .overlay h3 {
-  font-size: .3em;
+  font-size: .2em;
   text-align: center;
 }
 .overlay p {
   text-align: center;
-  font-size: .2em;
+  font-size: .15em;
 }
 
 
@@ -135,44 +139,13 @@ body {
     position: relative;
     width: 100px;
     height: 100px;
+    width: 130px;
+    height: 130px;
     text-align: center;
     transition: transform 0.5s;
     transform-style: preserve-3d;
     transform: scale(1);
   }
-
-.overlay {
-  display: none;
-  position: fixed;
-  font-size: 0;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  justify-content: center;
-  align-items: center;
-  z-index: 100;
-  color: #f79f24;
-}
-
-.overlay.visible {
-  display: flex;
-  flex-direction: column;
-  animation: overlayy 500ms forwards;
-}
-
-
-@keyframes overlayy {
-  from {
-    background-color: rgba(0, 0, 0, 0.5);
-    font-size: 0em;
-  }
-  to {
-    background-color: rgba(0, 0, 0, .8);
-    font-size: 10em;
-  }
-}
-
   
   .flip-card-inner:active {
     transform: scale(0.85);
@@ -194,19 +167,18 @@ body {
     backface-visibility: hidden;
     border-radius: 10px;
   }
-  
-  /* Style the front side (fallback if image is missing) */
-  .flip-card-front {
-    background-color: var(--green-color);
+
+/* Style the back side */
+  .flip-card-back {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotateY(180deg);
   }
-    /* Style the back side */
-    .flip-card-back {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transform: rotateY(180deg);
-      background-color: var(--light-green-color);
-    }
+
+  .flip-card-back p {
+    font-size: 3em;
+  }
 
     /* Depending on which theme has been chosen */
   .flip-card-front.orange {
@@ -226,104 +198,24 @@ body {
   }
   .flip-card-back.light-orange {
     background-color: var(--light-orange-color);
-
-
-
-.overlay p {
-  font-size: .2em;
-}
-
-/* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
-.flip-card-container {
-  display: grid;
-  grid-template-columns: repeat(6, auto);
-  grid-gap: 15px;
-  justify-content: center;
-  align-content: center;
-  perspective: 1000px;
-  /* Remove this if you don't want the 3D effect */
-}
-
-.flip-card-container h1 {
-  grid-column: 1 / -1;
-  text-align: center;
-}
-.card-score-container {
-  grid-column: 1 / -1;
-  display: flex;
-  justify-content: space-between;
-}
-
-/* This container is needed to position the front and back side */
-.flip-card-inner {
-  position: relative;
-  width: 100px;
-  height: 100px;
-  text-align: center;
-  transition: transform 0.5s;
-  transform-style: preserve-3d;
-  transform: scale(1);
-}
-
-.flip-card-inner {
-  font-size: 3em;
-}
-
-.flip-card-inner:active {
-  transform: scale(0.85);
-}
-
-/* Do an horizontal flip when you move the mouse over the flip box container */
-.flip-card-inner.flip {
-  transform: rotateY(180deg);
-}
-
-/* Position the front and back side */
-.flip-card-front,
-.flip-card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden;
-  /* Safari */
-  backface-visibility: hidden;
-  border-radius: 10px;
-}
-
-/* Style the front side (fallback if image is missing) */
-.flip-card-front {
-  background-color: #fd5569;
-  background-color: #45c441;
-  background-color: #f79f24;
-}
-
-/* Style the back side */
-.flip-card-back {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #ff9aa6;
-  background-color: #8bd388;
-  background-color: #ebb66d;
-  transform: rotateY(180deg);
-}
-
-  
-
-@media screen and (max-width: 771px) {
-
-  .hamburger-menu {
-    width: 35px;
   }
 
+  /* Media Queries */
+  @media screen and (max-width: 900px) {
+    .flip-card-inner {
+      width: 110px;
+      height: 110px;
+    }
+  }
+
+@media screen and (max-width: 771px) {
   .flip-card-inner {
-    width: 74px;
-    height: 74px;
+    width: 100px;
+    height: 100px;
   }
   .flip-card-container {
     grid-template-columns: repeat(4, auto);
   }
-
 
   .card-flip-currentTime {
     grid-column: 2 / 4;
@@ -337,13 +229,9 @@ body {
 
 }
   @media screen and (max-width: 576px) {
-    .logo {
-      font-size: 24px;
-    }
-
     .flip-card-inner {
-      width: 75px;
-      height: 75px;
+      width: 80px;
+      height: 80px;
     }
     .card-flip-highScore {
       font-size: 18px;
@@ -354,37 +242,21 @@ body {
     .card-flip-currentTime h3 {
       font-size: 25px;
     }
+    .flip-card-back p {
+      font-size: 2.5em;
+    }
+    .overlay h3 {
+      font-size: .15em;
+      text-align: center;
+    }
+    .overlay p {
+      text-align: center;
+      font-size: .12em;
+    }
   }
-  @media screen and (max-width: 400px) {
-
+  @media screen and (max-width: 380px) {
     .flip-card-inner {
       width: 60px;
       height: 60px;
     }
-
-    .flip-card-inner {
-      font-size: 2.2em;
-    }
   }
-  
-
-}
-@media screen and (max-width: 576px) {
-  .flip-card-inner {
-    width: 75px;
-    height: 75px;
-  }
-}
-@media screen and (max-width: 400px) {
-  .flip-card-inner {
-    width: 60px;
-    height: 60px;
-  }
-
-  .flip-card-inner p {
-    font-size: 2.5em;
-  }
-}
-
-
-

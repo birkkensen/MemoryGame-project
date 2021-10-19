@@ -159,13 +159,11 @@ function duplicateArray(array) {
 }
 
 function themePicker(content) {
-const overlays = document.querySelectorAll(".overlay");
-overlays.forEach((overlay) =>
-  overlay.addEventListener("click", () => {
-    overlay.classList.remove("visible");
-    startGame();
-  })
-);
+const overlayIntro = document.querySelector(".overlay.intro");
+overlayIntro.addEventListener("click", () => {
+  overlayIntro.classList.remove("visible");
+  startGame();
+});
   switch(content.value) {
     case 'halloween': cardColor = 'orange'
     break;
@@ -217,23 +215,26 @@ function setCardColor() {
 }
 
 function card(card) {
-  document.querySelector(".flip-card-container").innerHTML += `
+document.querySelector(".flip-card-container").innerHTML += `
 <div class="flip-card-inner" data-letter="${card.id}"> 
     <div class="flip-card-front">
   </div>
   <div class="flip-card-back">
-      ${card.content}
+      <p>${card.content}</p>
   </div>
 </div>
   `;
 }
 
-
-const overlayIntro = document.querySelector(".overlay.intro");
-overlayIntro.addEventListener("click", () => {
-  overlayIntro.classList.remove("visible");
-  startGame();
-});
+function createTimerAndHighScore() {
+document.querySelector(".flip-card-container").innerHTML += `
+<div class="card-flip-highScore">High Score 00:59</div>
+<div class="card-flip-currentTime">
+    <h2>Time</h2>
+    <h3>01:32</h3>
+</div>
+`
+}
 
 const overlayOutro = document.querySelector(".overlay.outro");
 overlayOutro.addEventListener("click", () => {
@@ -242,6 +243,7 @@ overlayOutro.addEventListener("click", () => {
 });
 
 function startGame() {
+  createTimerAndHighScore();
   createCards();
   setCardColor();
   shuffleCards();
