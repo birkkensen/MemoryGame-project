@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memory</title>
     <link rel="stylesheet" href="css/style.css">
-
 </head>
+
 <body>
     <div class="wrapper">
         <div class="overlay intro visible">
@@ -22,6 +23,7 @@
         <div id="victory-text" class="overlay outro">
             <audio id="victory-sound" src="/audio/mixkit-firework-rockets-exploding-in-the-sky-2993.wav"></audio>
             <h3>You made it!</h3>
+            <p id="displayScore"></p>
             <p class="newGame">Choose a theme for new game!</p>
             <div class="chooseTheme">
                 <button value="halloween" id="halloween" onclick="themePicker(this)">🎃</button>
@@ -29,8 +31,17 @@
                 <button value="fruits" id="fruits" onclick="themePicker(this)">🍏</button>
             </div>
         </div>
-        <div class="flip-card-container"></div>
+        <div class="flip-card-container">
+            <div class="card-flip-highScore">High Score is: <span id="scoreText"></span></div>
+            <div class="card-flip-currentTime">
+                <h2>Time</h2>
+                <h3 class="time" id="display">00:00:00</h3>
+            </div>
+        </div>
     </div>
+
     <script type="text/javascript" src="app.js"></script>
+    <script src="./clock.js"></script>
 </body>
+
 </html>

@@ -100,42 +100,42 @@ let themes = {
       content: '🕯',
       id: 'b',
     },
-    {
-      content: '👻',
-      id: 'c',
-    },
-    {
-      content: '🕸',
-      id: 'd',
-    },
-    {
-      content: '🕷',
-      id: 'e',
-    },
-    {
-      content: '💀',
-      id: 'f',
-    },
-    {
-      content: '⚰️',
-      id: 'g',
-    },
-    {
-      content: '🦇',
-      id: 'h',
-    },
-    {
-      content: '😈',
-      id: 'i',
-    },
-    {
-      content: '🧟‍♂️',
-      id: 'j',
-    },
-    {
-      content: '🌕',
-      id: 'k',
-    },
+    // {
+    //   content: '👻',
+    //   id: 'c',
+    // },
+    // {
+    //   content: '🕸',
+    //   id: 'd',
+    // },
+    // {
+    //   content: '🕷',
+    //   id: 'e',
+    // },
+    // {
+    //   content: '💀',
+    //   id: 'f',
+    // },
+    // {
+    //   content: '⚰️',
+    //   id: 'g',
+    // },
+    // {
+    //   content: '🦇',
+    //   id: 'h',
+    // },
+    // {
+    //   content: '😈',
+    //   id: 'i',
+    // },
+    // {
+    //   content: '🧟‍♂️',
+    //   id: 'j',
+    // },
+    // {
+    //   content: '🌕',
+    //   id: 'k',
+    // },
 
 ],
 };
@@ -143,7 +143,7 @@ let themes = {
 
 
 
-
+let gameState = false;
 let cardArray;
 let cardColor;
 let hasFlippedCard = false;
@@ -228,12 +228,13 @@ document.querySelector(".flip-card-container").innerHTML += `
 
 function createTimerAndHighScore() {
 document.querySelector(".flip-card-container").innerHTML += `
-<div class="card-flip-highScore">High Score 00:59</div>
+<div class="card-flip-highScore">High Score is: <span id="scoreText"></span></div>
 <div class="card-flip-currentTime">
     <h2>Time</h2>
-    <h3>01:32</h3>
+    <h3 class="time" id="display">00:00:00</h3>
 </div>
 `
+showHighscore()
 }
 
 const overlayOutro = document.querySelector(".overlay.outro");
@@ -243,10 +244,11 @@ overlayOutro.addEventListener("click", () => {
 });
 
 function startGame() {
-  createTimerAndHighScore();
+  // createTimerAndHighScore();
   createCards();
   setCardColor();
   shuffleCards();
+  // start();
 }
 
 function restartGame() {
@@ -264,6 +266,10 @@ function deleteCards() {
 }
 
 function flipCard() {
+  if(!gameState) {
+    start();
+    gameState = true;
+  }
   if (lockBoard) return;
   if (this === firstCard) return; //so not to click 2 times at same card and get a pair
   this.classList.add("flip");
@@ -306,6 +312,7 @@ function resetBoard() {
   //ES6 destructuring assignment
   [hasFlippedCard, lockBoard] = [false, false];
   [firstCard, secondCard] = [null, null];
+  gameState = false;
 }
 
 function shuffleCards() {
@@ -319,16 +326,17 @@ function shuffleCards() {
 
 function gameOver() {
   document.querySelector("#victory-text").classList.add("visible");
+  reset();
   playAudio();
 }
 
 function countMatchedCards() {
   const isFlipped = document.querySelectorAll(".flip");
-  if (isFlipped.length === cardArray.length) {
+  if (isFlipped.length == cardArray.length) {
     //take away true, only there temporarily
     setTimeout(() => {
       gameOver();
-    }, 1000);
+    }, 500);
   }
 }
 
@@ -348,3 +356,7 @@ function playAudio() {
   }
 } */
 // cards.forEach((card) => card.addEventListener("click", flipCard));
+
+
+
+// Clock
