@@ -87,7 +87,7 @@ let themes = {
       id: 'j',
     },
     {
-      content: '🫐',
+      content: '🍍',
       id: 'k',
     },
 ],
