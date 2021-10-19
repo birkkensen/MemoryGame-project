@@ -1,38 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gold Stopwatch</title>
-    <link rel="stylesheet" href="./css/style.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;1,300&display=swap"
-      rel="stylesheet"
-    />
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory</title>
+    <link rel="stylesheet" href="css/style.css">
 
-  </head>
-
-  <body>
-    <div class="stopwatch">
-      <h1>Highscore is: <span id="scoreText"></span></h1>
-        <span class="time" id="display">00:00:00</span>
-
-      <div class="controls">
-        <button class="buttonPlay">
-          <img id="playButton" src="https://res.cloudinary.com/https-tinloof-com/image/upload/v1593360448/blog/time-in-js/play-button_opkxmt.svg" />
-
-          <img id="pauseButton" src="https://res.cloudinary.com/https-tinloof-com/image/upload/v1593360448/blog/time-in-js/pause-button_pinhpy.svg" />
-        </button>
-
-        <button class="buttonReset">
-          <img id="resetButton" src="https://res.cloudinary.com/https-tinloof-com/image/upload/v1593360448/blog/time-in-js/reset-button_mdv6wf.svg" />
-        </button>
-      </div>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="overlay intro visible">
+            <h3>World Of Memories</h3>
+            <p>Choose a theme to start:</p>
+            <div class="chooseTheme">
+                <button value="halloween" id="halloween" onclick="themePicker(this)">🎃</button>
+                <button value="animal" id="animal" onclick="themePicker(this)">🐒</button>
+                <button value="fruits" id="fruits" onclick="themePicker(this)">🍏</button>
+            </div>
+        </div>
+        <div id="victory-text" class="overlay outro">
+            <audio id="victory-sound" src="/audio/mixkit-firework-rockets-exploding-in-the-sky-2993.wav"></audio>
+            <h3>You made it!</h3>
+            <p class="newGame">Choose a theme for new game!</p>
+            <div class="chooseTheme">
+                <button value="halloween" id="halloween" onclick="themePicker(this)">🎃</button>
+                <button value="animal" id="animal" onclick="themePicker(this)">🐒</button>
+                <button value="fruits" id="fruits" onclick="themePicker(this)">🍏</button>
+            </div>
+        </div>
+        <div class="flip-card-container"></div>
     </div>
-    <script src="./clock.js"></script>
-  </body>
+    <script type="text/javascript" src="app.js"></script>
+</body>
 </html>

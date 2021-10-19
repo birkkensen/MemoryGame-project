@@ -1,97 +1,263 @@
 * {
   box-sizing: border-box;
+  margin: 0;
   padding: 0;
-  margin: 0;
+}
+:root {
+  /* Colors */
+  --orange-color: #F79F24;
+  --light-orange-color: #ebb66d;
+  --green-color: #45c441;
+  --light-green-color: #8bd388;
+  --blue-color: #2d71f0;
+  --light-blue-color: #5b91f7;
+  --pink-color: #fd5569;
+  --light-pink-color: #ff9aa6;
+
 }
 
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color:black;
-  padding: 20px;
+html {
+  font-family: 'Avenir Next', serif;
 }
 
-nav ul {
-  display: flex;
-  list-style: none;
-}
-
-nav ul li {
-  padding-left: 8px;
-}
 body {
-  background-color: #2c3347;
-  color: #ffffff;
+  width: 100vw;
+  min-height: 100vh;
+  background-color: rgb(255, 244, 245);
+
 }
-
-h1 {
-  font-size: 48px;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 200;
-
-  text-align: center;
-  line-height: 59px;
-
-  padding: 0 64px;
-  margin: 0;
-}
-
-.stopwatch {
-  display: grid;
-  justify-items: center;
-  grid-row-gap: 23px;
-  width: 100%;
-  padding-top: 25px;
-}
-
-.circle {
+.wrapper {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  height: 270px;
-  width: 270px;
-
-  border: 2px solid;
-  border-radius: 50%;
+  height: 100%;
+  margin-top: 40px;
 }
 
-.time {
-  font-family: "Roboto Mono", monospace;
-  font-weight: 300;
-  font-size: 48px;
-}
-
-.gold {
-  font-weight: 900;
-
-  color: #f2c94c;
-  text-shadow: 0 0 0px #fff, 0 0 50px #f2c94c;
-}
-
-.controls {
-  display: flex;
-  justify-content: space-between;
-
-  width: 187px;
-}
-
-button {
-  cursor: pointer;
-  background: transparent;
-  padding: 0;
-  border: none;
-  margin: 0;
-  outline: none;
-}
-
-#playButton {
-  display: block;
-}
-
-#pauseButton {
+.overlay {
   display: none;
+  position: fixed;
+  font-size: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  color: #f79f24;
+  text-align: center;
 }
 
-/*# sourceMappingURL=style.css.map */
+.overlay.visible {
+  display: flex;
+  flex-direction: column;
+  animation: overlayy 500ms forwards;
+}
+
+@keyframes overlayy {
+  from {
+    background-color: rgba(0, 0, 0, 0.5);
+    font-size: 0em;
+  }
+  to {
+    background-color: rgba(0, 0, 0, .8);
+    font-size: 10em;
+  }
+}
+
+.chooseTheme {
+  font-size: 34px;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.chooseTheme button {
+  font-size: 34px;
+  line-height: 34px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  padding: 20px;
+  margin: 5px;
+  border-radius: 10px;
+  transition: background-color .2s ease-in-out;
+}
+
+#halloween {background-color: var(--light-orange-color);}
+#halloween:hover {background-color: var(--orange-color);}
+#fruits {background-color: var(--light-blue-color);}
+#fruits:hover {background-color: var(--blue-color);}
+#animal {background-color: var(--light-green-color);}
+#animal:hover {background-color: var(--green-color);}
+
+
+.overlay h3 {
+  font-size: .2em;
+  text-align: center;
+}
+.overlay p {
+  text-align: center;
+  font-size: .15em;
+}
+
+
+/* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+.flip-card-container {
+    display: grid;
+    grid-template-columns: repeat(6, auto);
+    grid-gap: 10px;
+    justify-content: center;
+    align-content: center;
+    perspective: 1000px;
+    width: 100%;
+    /* Remove this if you don't want the 3D effect */
+  }
+
+  .card-flip-highScore {
+    grid-column: 1 / -1;
+    font-weight: normal;
+    font-size: 26px;
+  }
+  .card-flip-currentTime {
+    grid-row: 2;
+    grid-column: 3 / 5;
+    text-align: center;
+  }
+
+  .card-flip-currentTime h2 {
+    font-size: 30px;
+    font-weight: normal;
+  }
+  .card-flip-currentTime h3 {
+    font-size: 45px;
+    font-weight: normal;
+  }
+  /* This container is needed to position the front and back side */
+  .flip-card-inner {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    width: 130px;
+    height: 130px;
+    text-align: center;
+    transition: transform 0.5s;
+    transform-style: preserve-3d;
+    transform: scale(1);
+  }
+  
+  .flip-card-inner:active {
+    transform: scale(0.85);
+  }
+  
+  /* Do an horizontal flip when you move the mouse over the flip box container */
+  .flip-card-inner.flip {
+    transform: rotateY(180deg);
+  }
+  
+  /* Position the front and back side */
+  .flip-card-front,
+  .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    /* Safari */
+    backface-visibility: hidden;
+    border-radius: 10px;
+  }
+
+/* Style the back side */
+  .flip-card-back {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotateY(180deg);
+  }
+
+  .flip-card-back p {
+    font-size: 3em;
+  }
+
+    /* Depending on which theme has been chosen */
+  .flip-card-front.orange {
+    background-color: var(--orange-color);
+  }
+  .flip-card-front.green {
+    background-color: var(--green-color);
+  }
+  .flip-card-front.blue {
+    background-color: var(--blue-color);
+  }
+  .flip-card-back.light-blue {
+    background-color: var(--light-blue-color);
+  }
+  .flip-card-back.light-green {
+    background-color: var(--light-green-color);
+  }
+  .flip-card-back.light-orange {
+    background-color: var(--light-orange-color);
+  }
+
+  /* Media Queries */
+  @media screen and (max-width: 900px) {
+    .flip-card-inner {
+      width: 110px;
+      height: 110px;
+    }
+  }
+
+@media screen and (max-width: 771px) {
+  .flip-card-inner {
+    width: 100px;
+    height: 100px;
+  }
+  .flip-card-container {
+    grid-template-columns: repeat(4, auto);
+  }
+
+  .card-flip-currentTime {
+    grid-column: 2 / 4;
+  }
+  .card-flip-currentTime h2 {
+    font-size: 25px;
+  }
+  .card-flip-currentTime h3 {
+    font-size: 30px;
+  }
+
+}
+
+  @media screen and (max-width: 576px) {
+    .flip-card-inner {
+      width: 80px;
+      height: 80px;
+    }
+    .card-flip-highScore {
+      font-size: 18px;
+    }
+    .card-flip-currentTime h2 {
+      font-size: 20px;
+    }
+    .card-flip-currentTime h3 {
+      font-size: 25px;
+    }
+    .flip-card-back p {
+      font-size: 2.5em;
+    }
+    .overlay h3 {
+      font-size: .15em;
+      text-align: center;
+    }
+    .overlay p {
+      text-align: center;
+      font-size: .12em;
+    }
+  }
+  @media screen and (max-width: 380px) {
+    .flip-card-inner {
+      width: 60px;
+      height: 60px;
+    }
+  }
