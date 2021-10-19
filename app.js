@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 let themes = {
   animal: [ 
     {
@@ -152,7 +150,6 @@ let hasFlippedCard = false;
 let lockBoard = false;
 let firstCard, secondCard;
 
->>>>>>> 62fb334a3c6cab092848f80e42a7dad9d2dc95c9
 
 //Duplicate array and merge it with the original
 function duplicateArray(array) {
