@@ -225,14 +225,7 @@ function card(card) {
 }
 
 function startGame() { 
-  document.querySelector(".flip-card-container").innerHTML = `
-  <h1 class="card-flip-highScore">High Score: 00:59</h1>
-  <div class="card-flip-currentTime">
-    <h2>Time</h2>
-    <h3>01:32</h3>
-  </div>
 
-  `; 
   createCards();
   setCardColor();
   shuffleCards();
