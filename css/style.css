@@ -47,8 +47,6 @@ nav {
   font-weight: bold;
   cursor: pointer;
   
-  
-
 }
 
 .nav-links li {
@@ -155,10 +153,8 @@ button{
     margin-bottom: 20px;
     
   }
- 
 }
   
-
 
 /* The Close Button */
 .close {
