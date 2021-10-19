@@ -10,19 +10,19 @@
 
 </head>
 
-<body onload="startGame()">
-    <nav>
-        <h1 class="logo">Memory Game</h1>
-        <button class="hamburger-menu">
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-        </button>
-    </nav>
-
-
-    <div class="flip-card-container"></div>
-
+<body>
+    <div class="wrapper">
+        <div class="overlay visible">
+            <h3>World Of Memories</h3>
+            <p>Pick a theme to start:</p>
+            <div class="chooseTheme">
+                <button value="halloween" id="halloween" onclick="themePicker(this)">🎃</button>
+                <button value="animal" id="animal" onclick="themePicker(this)">🐒</button>
+                <button value="fruits" id="fruits" onclick="themePicker(this)">🍏</button>
+            </div>
+        </div>
+        <div class="flip-card-container"></div>
+    </div>
     <script type="text/javascript" src="app.js"></script>
 </body>
 

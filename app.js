@@ -1,112 +1,150 @@
-//let emojis = [ '🐒', '🐒', '🦊', '🦊', '🐯', '🐯', '🐕', '🐕', '🐷', '🐷', '🐄', '🐄', '🐪', '🐪', '🐘', '🐘', '🦏', '🦏', '🦒', '🦒', '🐹', '🐹', '🐨', '🐨' ]
+let themes = {
+  animal: [ 
+    {
+      content: '🐒',
+      id: 'a'
+    },
+    {
+      content: '🦊',
+      id: 'b'
+    },
+    {
+      content: '🐯',
+      id: 'c'
+    },
+    {
+      content: '🐕',
+      id: 'd'
+    },
+    {
+      content: '🐷',
+      id: 'e'
+    },
+    {
+      content: '🐄',
+      id: 'f'
+    },
+    {
+      content: '🐪',
+      id: 'g'
+    },
+    {
+      content: '🐘',
+      id: 'h'
+    },
+    {
+      content: '🦒',
+      id: 'i'
+    },
+    {
+      content: '🐹',
+      id: 'j'
+    },
+    {
+      content: '🐨',
+      id: 'k'
+    },
+],
+  fruits : [
+    {
+      content: '🍏',
+      id: 'a',
+    },
+    {
+      content: '🍐',
+      id: 'b',
+    },
+    {
+      content: '🍊',
+      id: 'c',
+    },
+    {
+      content: '🍋',
+      id: 'd',
+    },
+    {
+      content: '🍌',
+      id: 'e',
+    },
+    {
+      content: '🍑',
+      id: 'f',
+    },
+    {
+      content: '🥝',
+      id: 'g',
+    },
+    {
+      content: '🍓',
+      id: 'h',
+    },
+    {
+      content: '🍇',
+      id: 'i',
+    },
+    {
+      content: '🍉',
+      id: 'j',
+    },
+    {
+      content: '🫐',
+      id: 'k',
+    },
+],
+  halloween: [
+    {
+      content: '🎃',
+      id: 'a',
+    },
+    {
+      content: '🕯',
+      id: 'b',
+    },
+    {
+      content: '👻',
+      id: 'c',
+    },
+    {
+      content: '🕸',
+      id: 'd',
+    },
+    {
+      content: '🕷',
+      id: 'e',
+    },
+    {
+      content: '💀',
+      id: 'f',
+    },
+    {
+      content: '⚰️',
+      id: 'g',
+    },
+    {
+      content: '🦇',
+      id: 'h',
+    },
+    {
+      content: '😈',
+      id: 'i',
+    },
+    {
+      content: '🧟‍♂️',
+      id: 'j',
+    },
+    {
+      content: '🌕',
+      id: 'k',
+    },
 
-let animalTheme = [
-  {
-    content: '🐒',
-    id: 'a'
-  },
-  {
-    content: '🦊',
-    id: 'b'
-  },
-  {
-    content: '🐯',
-    id: 'c'
-  },
-  {
-    content: '🐕',
-    id: 'd'
-  },
-  {
-    content: '🐷',
-    id: 'e'
-  },
-  {
-    content: '🐄',
-    id: 'f'
-  },
-  {
-    content: '🐪',
-    id: 'g'
-  },
-  {
-    content: '🐘',
-    id: 'h'
-  },
-  {
-    content: '🦒',
-    id: 'i'
-  },
-  {
-    content: '🐹',
-    id: 'j'
-  },
-  {
-    content: '🐨',
-    id: 'k'
-  },
-  // {
-  //   content: '🐝',
-  //   id: 'l'
-  // },
-];
-let halloweenTheme = [
-  {
-    content: '🎃',
-    id: 'a',
-  },
-  {
-    content: '🕯',
-    id: 'b',
-  },
-  {
-    content: '👻',
-    id: 'c',
-  },
-  {
-    content: '🕸',
-    id: 'd',
-  },
-  {
-    content: '🕷',
-    id: 'e',
-  },
-  {
-    content: '💀',
-    id: 'f',
-  },
-  {
-    content: '⚰️',
-    id: 'g',
-  },
-  {
-    content: '🦇',
-    id: 'h',
-  },
-  {
-    content: '😈',
-    id: 'i',
-  },
-  {
-    content: '🧟‍♂️',
-    id: 'j',
-  },
-  {
-    content: '🌕',
-    id: 'k',
-  },
-  // {
-  //   content: '🧛',
-  //   id: 'l',
-  // },
-  ];
-
-
-
-let cardArray = duplicateArray(animalTheme);
+],
+};
+let cardArray;
+let cardColor;
 let hasFlippedCard = false;
 let lockBoard = false;
 let firstCard, secondCard;
+
 
 //Duplicate array and merge it with the original
 function duplicateArray(array) {
@@ -114,6 +152,28 @@ function duplicateArray(array) {
   array = array.concat(copy);
   return array;
 }
+
+function themePicker(content) {
+const overlays = document.querySelectorAll(".overlay");
+overlays.forEach((overlay) =>
+  overlay.addEventListener("click", () => {
+    overlay.classList.remove("visible");
+    startGame();
+  })
+);
+  switch(content.value) {
+    case 'halloween': cardColor = 'orange'
+    break;
+    case 'animal': cardColor = 'green'
+    break;
+    case 'fruits': cardColor = 'blue'
+    break;
+    default: 'You didnt pick a theme boi'
+  }
+  cardArray = duplicateArray(themes[content.value])
+}
+
+
 
 function createCards () {
   for(i = 0; i < cardArray.length; i++) {
@@ -123,6 +183,32 @@ function createCards () {
   cards.forEach(card => {
     card.addEventListener("click", flipCard)
   })
+}
+
+function setCardColor() {
+  const flipCardFront = document.querySelectorAll('.flip-card-front');
+  const flipCardBack = document.querySelectorAll('.flip-card-back');
+
+  flipCardFront.forEach(card => {
+    switch(cardColor) {
+      case 'orange': card.classList.add('orange');
+      break;
+      case 'green': card.classList.add('green');
+      break;
+      case 'blue': card.classList.add('blue');
+      break;
+    }
+    });
+  flipCardBack.forEach(card => {
+    switch(cardColor) {
+      case 'orange': card.classList.add('light-orange');
+      break;
+      case 'green': card.classList.add('light-green');
+      break;
+      case 'blue': card.classList.add('light-blue');
+      break;
+    }
+    });
 }
 
 function card(card) {
@@ -148,6 +234,7 @@ function startGame() {
 
   `; 
   createCards();
+  setCardColor();
   shuffleCards();
 }
 

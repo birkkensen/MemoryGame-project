@@ -10,6 +10,8 @@
   --light-orange-color: #ebb66d;
   --green-color: #45c441;
   --light-green-color: #8bd388;
+  --blue-color: #2d71f0;
+  --light-blue-color: #5b91f7;
   --pink-color: #fd5569;
   --light-pink-color: #ff9aa6;
 
@@ -21,43 +23,80 @@ html {
 
 body {
   width: 100vw;
-  /* min-height: 100vh; */
+  min-height: 100vh;
   background-color: rgb(255, 244, 245);
+
+}
+.wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 40px;
 }
-
-nav {
-  height: 76px;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
+.overlay {
+  display: none;
+  position: fixed;
+  font-size: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  justify-content: center;
   align-items: center;
-  padding: 20px;
+  z-index: 100;
+  color: #f79f24;
 }
 
-.logo {
-  font-size: 30px;
-  font-weight: normal;
+.overlay.visible {
+  display: flex;
+  flex-direction: column;
+  animation: overlayy 500ms forwards;
+}
+.chooseTheme {
+  font-size: 34px;
+  margin-top: 40px;
+  text-align: center;
 }
 
-.hamburger-menu {
-  width: 45px;
-  height: 50px;
-  background-color: transparent;
+.chooseTheme button {
+  font-size: 34px;
+  line-height: 34px;
   border: none;
   cursor: pointer;
+  color: white;
+  padding: 20px;
+  margin: 5px;
+  border-radius: 10px;
+  transition: background-color .2s ease-in-out;
 }
 
+#halloween {background-color: var(--light-orange-color);}
+#halloween:hover {background-color: var(--orange-color);}
+#fruits {background-color: var(--light-blue-color);}
+#fruits:hover {background-color: var(--blue-color);}
+#animal {background-color: var(--light-green-color);}
+#animal:hover {background-color: var(--green-color);}
 
-.line {
-  height: 4px;
-  background-color: #000;
-  width: 100%;
-  margin-bottom: 8px;
-  border-radius: 25px;
+
+@keyframes overlayy {
+  from {
+    background-color: rgba(0, 0, 0, 0.5);
+    font-size: 0em;
+  }
+  to {
+    background-color: rgba(0, 0, 0, .8);
+    font-size: 10em;
+  }
+}
+
+.overlay h3 {
+  font-size: .3em;
+  text-align: center;
+}
+.overlay p {
+  text-align: center;
+  font-size: .2em;
 }
 
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
@@ -132,14 +171,33 @@ nav {
   .flip-card-front {
     background-color: var(--green-color);
   }
-  
-  /* Style the back side */
-  .flip-card-back {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transform: rotateY(180deg);
+    /* Style the back side */
+    .flip-card-back {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform: rotateY(180deg);
+      background-color: var(--light-green-color);
+    }
+
+    /* Depending on which theme has been chosen */
+  .flip-card-front.orange {
+    background-color: var(--orange-color);
+  }
+  .flip-card-front.green {
+    background-color: var(--green-color);
+  }
+  .flip-card-front.blue {
+    background-color: var(--blue-color);
+  }
+  .flip-card-back.light-blue {
+    background-color: var(--light-blue-color);
+  }
+  .flip-card-back.light-green {
     background-color: var(--light-green-color);
+  }
+  .flip-card-back.light-orange {
+    background-color: var(--light-orange-color);
   }
 
 
@@ -200,6 +258,4 @@ nav {
       font-size: 2.2em;
     }
   }
-  
-  /*# sourceMappingURL=style.css.map */
   
