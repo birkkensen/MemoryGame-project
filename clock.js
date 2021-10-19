@@ -1,9 +1,16 @@
 // Sort array
-function sortTimes() {
-    times.sort(function(a, b) {
+function sortTimes(array) {
+    array.sort(function(a, b) {
       return a - b;
     });
   }
+
+  function add(x) {
+    topScores.unshift(x);
+    if (topScores.length > 3) {
+        topScores.length = 3;
+    }
+}
   
   
   // Declare variables to use in our functions below
@@ -53,7 +60,7 @@ function sortTimes() {
     const times = [];
     
     function start() {
-      sortTimes();
+      sortTimes(times);
       timeToBeat = times[0];
       console.log(timeToBeat);
   
@@ -85,6 +92,7 @@ function sortTimes() {
   
       console.log(highScore);
       showHighscore();
+      sortTimes(times);
       console.log(times);
   
       seedScores();
@@ -112,13 +120,10 @@ function sortTimes() {
   
   
   function seedScores() {
-    sortTimes();
+    sortTimes(times);
     for (let i = 0; i < 3; i++) {
-    
-      // console.log(item);
-      topScores.push(times[i]);
-      
-      // topScores.pop();
+        add(times[i]);
     }
+    sortTimes(topScores);
     console.log(topScores);
   }
