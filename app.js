@@ -58,11 +58,11 @@ let halloweenTheme = [
   {
     content: "🕯",
     id: "b",
-  },
+  } /*,
   {
     content: "👻",
     id: "c",
-  },
+  } ,
   {
     content: "🕸",
     id: "d",
@@ -98,7 +98,7 @@ let halloweenTheme = [
   {
     content: "🧛",
     id: "l",
-  },
+  }, */,
 ];
 
 //Duplicate array and merge it with the original
@@ -144,7 +144,7 @@ overlayIntro.addEventListener("click", () => {
 const overlayOutro = document.querySelector(".overlay.outro");
 overlayOutro.addEventListener("click", () => {
   overlayOutro.classList.remove("visible");
-  startGameAgain();
+  restartGame();
 });
 
 function startGame() {
@@ -152,10 +152,18 @@ function startGame() {
   shuffleCards();
 }
 
-function startGameAgain() {
-  //Is there a better way???? 
-  card();
-  shuffleCards();
+function restartGame() {
+  resetState();
+  startGame();
+}
+
+function resetState() {
+  resetBoard();
+  deleteCards();
+}
+
+function deleteCards() {
+  document.querySelector(".flip-card-container").innerHTML = "";
 }
 
 function flipCard() {
@@ -219,17 +227,17 @@ function gameOver() {
 
 function countMatchedCards() {
   const isFlipped = document.querySelectorAll(".flip");
-  if (isFlipped.length === cardArray.length || true) {
+  if (isFlipped.length === cardArray.length) {
     //take away true, only there temporarily
     setTimeout(() => {
-      gameOver();   
+      gameOver();
     }, 1000);
   }
 }
 
 function playAudio() {
   const audio = document.querySelector("#victory-sound");
-  audio.volume = 1;
+  audio.volume = 0.5;
   audio.playbackRate = 0.5;
   audio.play();
 }
