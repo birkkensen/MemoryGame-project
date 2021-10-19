@@ -139,6 +139,11 @@ let themes = {
 
 ],
 };
+
+
+
+
+
 let cardArray;
 let cardColor;
 let hasFlippedCard = false;
