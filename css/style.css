@@ -5,7 +5,6 @@
 }
 body {
   background:#fff;
-  color: rgb(10, 9, 9);
   overflow-x: hidden;
 }
 nav {
@@ -76,13 +75,11 @@ nav {
   
 }
 
-@keyframes navLinkFade{
+@keyframes navLinkFade {
   from{
-   
     opacity:0;
     transform: translateX(50px);
-   
-  }
+   }
   to{
     opacity:1;
     transform:translateX(0px);
@@ -99,7 +96,6 @@ nav {
 .toggle .line3{
   transform:rotate(+45deg) translate(-5px,-6px);
 }
-/*# sourceMappingURL=style.css.map */
 
 main {
   margin:auto;
@@ -113,9 +109,12 @@ button{
   font-size: 16px;
   font-family: 'Poppins', sans-serif;
   font-weight: bold;
-  background-color: rgb(194, 189, 191);
-  color: #fff;
-  padding:10px;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
 
 }
 .modal {
@@ -145,13 +144,21 @@ button{
   background: #fff;
   display:flex;
   flex-direction: row;
-
-  @media screen and (max-width:720px;) {
-    max-width:100%;
-    display:column;
-  }
-  
+  align-items: center;
 }
+
+@media screen and (max-width:600px) {
+  .modal-content{
+    width: 400px;
+    height:auto;
+    display: block;
+    margin-bottom: 20px;
+    
+  }
+ 
+}
+  
+
 
 /* The Close Button */
 .close {
@@ -192,14 +199,6 @@ button{
 /* Add some padding inside the card container */
 .container {
   padding: 2px 16px;
-  max-width: 900px;
-
-  @media (min-width: 270px) {
-    display:column;
-    width:100%;
-   
-  }
-  
- 
+  max-width: 900px; 
 
 }
