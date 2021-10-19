@@ -1,105 +1,155 @@
-//let emojis = [ '🐒', '🐒', '🦊', '🦊', '🐯', '🐯', '🐕', '🐕', '🐷', '🐷', '🐄', '🐄', '🐪', '🐪', '🐘', '🐘', '🦏', '🦏', '🦒', '🦒', '🐹', '🐹', '🐨', '🐨' ]
+let themes = {
+  animal: [ 
+    {
+      content: '🐒',
+      id: 'a'
+    },
+    {
+      content: '🦊',
+      id: 'b'
+    },
+    {
+      content: '🐯',
+      id: 'c'
+    },
+    {
+      content: '🐕',
+      id: 'd'
+    },
+    {
+      content: '🐷',
+      id: 'e'
+    },
+    {
+      content: '🐄',
+      id: 'f'
+    },
+    {
+      content: '🐪',
+      id: 'g'
+    },
+    {
+      content: '🐘',
+      id: 'h'
+    },
+    {
+      content: '🦒',
+      id: 'i'
+    },
+    {
+      content: '🐹',
+      id: 'j'
+    },
+    {
+      content: '🐨',
+      id: 'k'
+    },
+],
+  fruits : [
+    {
+      content: '🍏',
+      id: 'a',
+    },
+    {
+      content: '🍐',
+      id: 'b',
+    },
+    {
+      content: '🍊',
+      id: 'c',
+    },
+    {
+      content: '🍋',
+      id: 'd',
+    },
+    {
+      content: '🍌',
+      id: 'e',
+    },
+    {
+      content: '🍑',
+      id: 'f',
+    },
+    {
+      content: '🥝',
+      id: 'g',
+    },
+    {
+      content: '🍓',
+      id: 'h',
+    },
+    {
+      content: '🍇',
+      id: 'i',
+    },
+    {
+      content: '🍉',
+      id: 'j',
+    },
+    {
+      content: '🫐',
+      id: 'k',
+    },
+],
+  halloween: [
+    {
+      content: '🎃',
+      id: 'a',
+    },
+    {
+      content: '🕯',
+      id: 'b',
+    },
+    {
+      content: '👻',
+      id: 'c',
+    },
+    {
+      content: '🕸',
+      id: 'd',
+    },
+    {
+      content: '🕷',
+      id: 'e',
+    },
+    {
+      content: '💀',
+      id: 'f',
+    },
+    {
+      content: '⚰️',
+      id: 'g',
+    },
+    {
+      content: '🦇',
+      id: 'h',
+    },
+    {
+      content: '😈',
+      id: 'i',
+    },
+    {
+      content: '🧟‍♂️',
+      id: 'j',
+    },
+    {
+      content: '🌕',
+      id: 'k',
+    },
 
-let animalTheme = [
-  {
-    content: '🐒',
-    id: 'a'
-  },
-  {
-    content: '🦊',
-    id: 'b'
-  },
-  {
-    content: '🐯',
-    id: 'c'
-  },
-  {
-    content: '🐕',
-    id: 'd'
-  },
-  {
-    content: '🐷',
-    id: 'e'
-  },
-  {
-    content: '🐄',
-    id: 'f'
-  },
-  {
-    content: '🐪',
-    id: 'g'
-  },
-  {
-    content: '🐘',
-    id: 'h'
-  },
-  {
-    content: '🦒',
-    id: 'i'
-  },
-  {
-    content: '🐹',
-    id: 'j'
-  },
-  {
-    content: '🐨',
-    id: 'k'
-  },
-  {
-    content: '🐝',
-    id: 'l'
-  },
-];
-let halloweenTheme = [
-  {
-    content: '🎃',
-    id: 'a',
-  },
-  {
-    content: '🕯',
-    id: 'b',
-  },
-  {
-    content: '👻',
-    id: 'c',
-  },
-  {
-    content: '🕸',
-    id: 'd',
-  },
-  {
-    content: '🕷',
-    id: 'e',
-  },
-  {
-    content: '💀',
-    id: 'f',
-  },
-  {
-    content: '⚰️',
-    id: 'g',
-  },
-  {
-    content: '🦇',
-    id: 'h',
-  },
-  {
-    content: '😈',
-    id: 'i',
-  },
-  {
-    content: '🧟‍♂️',
-    id: 'j',
-  },
-  {
-    content: '🌕',
-    id: 'k',
-  },
-  {
-    content: '🧛',
-    id: 'l',
-  },
-  ];
+],
+};
+
+
+
+
+
+let cardArray;
+let cardColor;
+let hasFlippedCard = false;
+let lockBoard = false;
+let firstCard, secondCard;
+
 
 //Duplicate array and merge it with the original
 function duplicateArray(array) {
@@ -108,44 +158,109 @@ function duplicateArray(array) {
   return array;
 }
 
-let cardArray = duplicateArray(halloweenTheme);
-let hasFlippedCard = false;
-let lockBoard = false;
-let firstCard, secondCard;
+function themePicker(content) {
+const overlayIntro = document.querySelector(".overlay.intro");
+overlayIntro.addEventListener("click", () => {
+  overlayIntro.classList.remove("visible");
+  startGame();
+});
+  switch(content.value) {
+    case 'halloween': cardColor = 'orange'
+    break;
+    case 'animal': cardColor = 'green'
+    break;
+    case 'fruits': cardColor = 'blue'
+    break;
+    default: 'You didnt pick a theme boi'
+  }
+  cardArray = duplicateArray(themes[content.value])
+}
 
-function createCards () {
-  for(i = 0; i < cardArray.length; i++) {
-    card(cardArray[i])
+
+
+function createCards() {
+  for (i = 0; i < cardArray.length; i++) {
+    card(cardArray[i]);
   }
   const cards = document.querySelectorAll(".flip-card-inner");
-  cards.forEach(card => {
-    card.addEventListener("click", flipCard)
-  })
+  cards.forEach((card) => {
+    card.addEventListener("click", flipCard);
+  });
+}
+
+function setCardColor() {
+  const flipCardFront = document.querySelectorAll('.flip-card-front');
+  const flipCardBack = document.querySelectorAll('.flip-card-back');
+
+  flipCardFront.forEach(card => {
+    switch(cardColor) {
+      case 'orange': card.classList.add('orange');
+      break;
+      case 'green': card.classList.add('green');
+      break;
+      case 'blue': card.classList.add('blue');
+      break;
+    }
+    });
+  flipCardBack.forEach(card => {
+    switch(cardColor) {
+      case 'orange': card.classList.add('light-orange');
+      break;
+      case 'green': card.classList.add('light-green');
+      break;
+      case 'blue': card.classList.add('light-blue');
+      break;
+    }
+    });
 }
 
 function card(card) {
-  document.querySelector(".flip-card-container").innerHTML += 
-  `
-<div class="flip-card-inner" data-letter="${card.id}">
+document.querySelector(".flip-card-container").innerHTML += `
+<div class="flip-card-inner" data-letter="${card.id}"> 
     <div class="flip-card-front">
   </div>
   <div class="flip-card-back">
-      ${card.content}
+      <p>${card.content}</p>
   </div>
 </div>
-  `
+  `;
 }
 
-function startGame() { 
-  document.querySelector(".flip-card-container").innerHTML = `
-  <h1 class="card-flip-title">Memory Game</h1>
-  <div class="card-score-container">
-    <h3>Time</h3>
-    <h3>Flips: 0</h3>
-  </div>
-  `; 
+function createTimerAndHighScore() {
+document.querySelector(".flip-card-container").innerHTML += `
+<div class="card-flip-highScore">High Score 00:59</div>
+<div class="card-flip-currentTime">
+    <h2>Time</h2>
+    <h3>01:32</h3>
+</div>
+`
+}
+
+const overlayOutro = document.querySelector(".overlay.outro");
+overlayOutro.addEventListener("click", () => {
+  overlayOutro.classList.remove("visible");
+  restartGame();
+});
+
+function startGame() {
+  createTimerAndHighScore();
   createCards();
+  setCardColor();
   shuffleCards();
+}
+
+function restartGame() {
+  resetState();
+  startGame();
+}
+
+function resetState() {
+  resetBoard();
+  deleteCards();
+}
+
+function deleteCards() {
+  document.querySelector(".flip-card-container").innerHTML = "";
 }
 
 function flipCard() {
@@ -154,7 +269,6 @@ function flipCard() {
   this.classList.add("flip");
   countMatchedCards();
   if (!hasFlippedCard) {
-    //bad name. "firstcardflipped"
     hasFlippedCard = true;
     firstCard = this;
     return;
@@ -163,13 +277,12 @@ function flipCard() {
   secondCard = this;
   hasFlippedCard = false;
   checkForMatch();
-  
 }
 
 function checkForMatch() {
   if (firstCard.dataset.letter === secondCard.dataset.letter) {
     disableCards();
-    return;  //different way, i would do if/else probably
+    return;
   }
   unflipCards();
 }
@@ -195,21 +308,43 @@ function resetBoard() {
   [firstCard, secondCard] = [null, null];
 }
 
-function shuffleCards() {   //IIFE
+function shuffleCards() {
+  //IIFE
   const cards = document.querySelectorAll(".flip-card-inner");
   cards.forEach((card) => {
     let ramdomPos = Math.floor(Math.random() * 24);
     card.style.order = ramdomPos;
   });
-};
+}
+
+function gameOver() {
+  document.querySelector("#victory-text").classList.add("visible");
+  playAudio();
+}
 
 function countMatchedCards() {
   const isFlipped = document.querySelectorAll(".flip");
-  if(isFlipped.length === cardArray.length) {
+  if (isFlipped.length === cardArray.length) {
+    //take away true, only there temporarily
     setTimeout(() => {
-      startGame()
-    }, 1000)
+      gameOver();
+    }, 1000);
   }
 }
-// cards.forEach((card) => card.addEventListener("click", flipCard));
 
+function playAudio() {
+  const audio = document.querySelector("#victory-sound");
+  audio.volume = 0.5;
+  audio.playbackRate = 0.5;
+  audio.play();
+}
+
+/*function countMatchedCards() {
+  const isFlipped = document.querySelectorAll(".flip");
+  if (isFlipped.length === cardArray.length) {
+    setTimeout(() => {
+      startGame();
+    }, 1000);
+  }
+} */
+// cards.forEach((card) => card.addEventListener("click", flipCard));
