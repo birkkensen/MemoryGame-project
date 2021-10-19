@@ -11,13 +11,13 @@ function sortTimes(array) {
         topScores.length = 3;
     }
 }
-function getHS() {
-  if (localStorage.getItem('highScore') === null) {
-    highScore = 'Play to set high score!'
-  } else {
-    highScore = localStorage.getItem('highScore');
-  }
-}
+// function getHS() {
+//   if (localStorage.getItem('highScore') === null) {
+//     highScore = 'Play to set high score!'
+//   } else {
+//     highScore = localStorage.getItem('highScore');
+//   }
+// }
   
   
   // Declare variables to use in our functions below
@@ -30,7 +30,7 @@ function getHS() {
   
   // Push highscore to HTML
   function showHighscore() {
-    getHS();
+    // getHS();
     document.getElementById("scoreText").innerHTML = highScore;
 
   }
@@ -59,6 +59,7 @@ function getHS() {
   // Create function to modify innerHTML
     function print(txt) {
       document.getElementById("display").innerHTML = txt;
+      console.log(txt)
     }
     
   // Create "start", "pause" and "reset" functions
@@ -86,7 +87,7 @@ function getHS() {
         highScore = timeToString(currentTime);
       }
       document.getElementById('displayScore').innerHTML = timeToString(currentTime);
-      localStorage.setItem('highScore', timeToString(currentTime));
+      localStorage.setItem('highScore', timeToString(highScore));
       clearInterval(timerInterval);
       print("00:00:00");
       elapsedTime = 0;

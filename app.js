@@ -244,11 +244,10 @@ overlayOutro.addEventListener("click", () => {
 });
 
 function startGame() {
-  // createTimerAndHighScore();
+  createTimerAndHighScore();
   createCards();
   setCardColor();
   shuffleCards();
-  // start();
 }
 
 function restartGame() {
@@ -259,6 +258,7 @@ function restartGame() {
 function resetState() {
   resetBoard();
   deleteCards();
+  gameState = false
 }
 
 function deleteCards() {
@@ -312,7 +312,6 @@ function resetBoard() {
   //ES6 destructuring assignment
   [hasFlippedCard, lockBoard] = [false, false];
   [firstCard, secondCard] = [null, null];
-  gameState = false;
 }
 
 function shuffleCards() {
