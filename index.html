@@ -22,8 +22,8 @@
 
     <ul class="nav-links nav-active">
       <li><a class="#"><a id="myBtn">about</a> </li>
-  
-      <li><a href="game">rules</a></li>
+      <li><a class="#"><a id="myBtnrules">rules</a> </li>
+      
       <li><a href="game">game</a></li>  
     </ul>
     
@@ -96,6 +96,34 @@
 
     </div>
 </div>
+
+ <!-- The Modal -->
+ <div id="rules" class="modal">
+  
+  <!-- Modal content -->
+  <div class="modal-content">
+   
+      <div class="players">
+        <h1 id="title">Write your name and best time score</h1><br>
+        <fieldset>
+        <legend>Name & Score</legend>
+        <input id="inpKey" type="text" placeholder="Enter Name">
+        <input id="inpValue" type="text" placeholder="Enter Time">
+          
+        <button type="button" id="btnInsert">Insert</button>
+      </fieldset>
+
+      <fieldset>
+        <legend>Players Highscore</legend>
+          <div id="lsOutput"></div>
+       
+      </fieldset>
+     
+    </div>
+    <span class="close">&times;</span>
+
+    </div>
+    </div>
 
 </main>
 

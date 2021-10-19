@@ -35,9 +35,13 @@ navSlide();
 // Get the modal
 var modal = document.getElementById("myModal");
 
+var rulesmodal = document.getElementById("rules");
+
 
 // Get the button that opens the modal
 var btn = document.getElementById("myBtn");
+
+var rulesbtn = document.getElementById("myBtnrules");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
@@ -45,6 +49,10 @@ var span = document.getElementsByClassName("close")[0];
 // When the user clicks the button, open the modal 
 btn.onclick = function() {
   modal.style.display = "block";
+}
+
+rulesbtn.onclick = function() {
+    rulesmodal.style.display = "block";
 }
 
 // When the user clicks on <span> (x), close the modal
@@ -58,3 +66,33 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
+
+
+
+// LocalStorage
+
+const inpKey = document.getElementById("inpKey");
+const inpValue = document.getElementById("inpValue");
+const btnInsert = document.getElementById("btnInsert");
+const lsOutput = document.getElementById("lsOutput");
+
+btnInsert.onclick = function (){
+    const key = inpKey.value;
+    const value = inpValue.value;
+
+    console.log (key);
+    console.log (value);
+
+   if (key && value){
+        localStorage.setItem(key, value);
+        
+    }
+};
+
+for (let i = 0; i <localStorage.length; i++){
+    const key = localStorage.key(i);
+    const value = localStorage.getItem(key);
+    lsOutput.innerHTML += `${key}: ${value}<br />`;
+}
+

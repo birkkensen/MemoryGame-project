@@ -3,6 +3,13 @@
   padding: 0;
   margin: 0;
 }
+
+h1,
+h2 {
+  font-family:'Poppins', serif;
+  font-size:1rem;
+}
+
 body {
   background:#fff;
   overflow-x: hidden;
@@ -28,14 +35,20 @@ nav {
  right:0px;
  height:100%;
  width:25%;
- top:8vh;
+ top:9.5vh;
  background-color:rgb(194, 189, 191);
  display:flex;
  flex-direction: column;
  align-items: center;
  transform:translateX(100%);
- transition:transform 2.5sec ease-in;
+ transition:transform 0.3s ease-in;
  padding-top: 3vh;
+  }
+  @media  screen and (min-width:1024px){
+    .nav-links{
+      top:2vh;
+    }
+    
   }
   
 .nav-links a {
@@ -102,19 +115,7 @@ main {
 
 /*PopUp*/
 /* The Modal (background) */
-button{
-  letter-spacing:3px;
-  font-size: 16px;
-  font-family: 'Poppins', sans-serif;
-  font-weight: bold;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
 
-}
 .modal {
   display: none; 
   position: fixed; 
@@ -147,10 +148,11 @@ button{
 
 @media screen and (max-width:600px) {
   .modal-content{
-    width: 400px;
+    width: 280px;
     height:auto;
     display: block;
     margin-bottom: 20px;
+   
     
   }
 }
@@ -162,6 +164,10 @@ button{
   float: right;
   font-size: 28px;
   font-weight: bold;
+  width: 50px;
+  height: 100%;
+  top:0%;
+  padding: 30px;
 }
 
 .close:hover,
@@ -197,4 +203,32 @@ button{
   padding: 2px 16px;
   max-width: 900px; 
 
+}
+
+/*localstorage*/
+input{
+  padding: 20px;
+  height:30px;
+  margin: 10px;
+  font-family: 'Poppins', serif;
+  
+}
+
+button {
+  padding: 5px;
+}
+.players {
+  font-family: 'Poppins', serif;
+  font-size: 1rem;
+  padding:5px;
+}
+fieldset{
+  margin-bottom: 20px;
+  padding: 6px;
+
+}
+
+legend{
+  padding:20px;
+ 
 }
