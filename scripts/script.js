@@ -50,6 +50,7 @@ btn.onclick = function () {
 
 rulesbtn.onclick = function () {
   rulesmodal.style.display = "block";
+  updateLS();
 };
 
 
@@ -68,10 +69,9 @@ span.forEach((span) => {
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
-  if (event.target == modal) {
+  if (event.target == modal || event.target == rulesmodal) {
     modal.style.display = "none";
     rulesmodal.style.display = "none";
-
   }
 };
 
@@ -88,11 +88,17 @@ btnInsert.onclick = function () {
 
   if (key && value) {
     localStorage.setItem(key, value);
+    inpKey.value = "";
+    inpValue.value = "";
   }
+  updateLS();
 };
 
-for (let i = 0; i < localStorage.length; i++) {
-  const key = localStorage.key(i);
-  const value = localStorage.getItem(key);
-  lsOutput.innerHTML += `${key}: ${value}<br />`;
+function updateLS() {
+  lsOutput.innerHTML = "";
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    const value = localStorage.getItem(key);
+    lsOutput.innerHTML += `${key}: ${value}<br />`;
+  }
 }
