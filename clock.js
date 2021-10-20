@@ -5,6 +5,7 @@ let elapsedTime = 0;
 let timerInterval;
 let highScore = null;
 let currentTime = "";
+let topScores = [];
 
 // Push highscore to HTML
 function showHighscore() {
@@ -66,8 +67,34 @@ function reset() {
     displayScore.innerHTML = `Almost: ${timeToString(currentTime)}`;
   }
   localStorage.setItem("highScores", highScore);
+  add(topScores, currentTime);
+  sortArray(topScores);
+  console.log(topScores);
   clearInterval(timerInterval);
   print("00:00:00");
   elapsedTime = 0;
   showHighscore();
+}
+
+// Sort array
+function sortArray(array) {
+  array.sort(function (a, b) {
+    return a - b;
+  });
+}
+
+function add(array, time) {
+  array.unshift(time);
+  if (array.length >= 3) {
+    array.length = 3;
+  }
+}
+
+function seedScores() {
+  sortTimes(times);
+  for (let i = 0; i < 3; i++) {
+    add(times[i]);
+  }
+  sortTimes(topScores);
+  console.log(topScores);
 }
