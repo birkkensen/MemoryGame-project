@@ -1,36 +1,21 @@
-// Sort array
-function sortTimes(array) {
-  array.sort(function (a, b) {
-    return a - b;
-  });
-}
-
-function add(x) {
-  topScores.unshift(x);
-  if (topScores.length > 3) {
-    topScores.length = 3;
-  }
-}
-// function getHS() {
-//   if (localStorage.getItem('highScore') === null) {
-//     highScore = 'Play to set high score!'
-//   } else {
-//     highScore = localStorage.getItem('highScore');
-//   }
-// }
-
 // Declare variables to use in our functions below
 let startTime;
 let timeToBeat;
 let elapsedTime = 0;
 let timerInterval;
-var highScore = 0;
-// localStorage.setItem('highScore', '00:00:00');
+let highScore = null;
+let currentTime = "";
+let topScores = [];
 
 // Push highscore to HTML
 function showHighscore() {
-  // getHS();
-  document.getElementById("scoreText").innerHTML = highScore;
+  let highScoreFromLS = localStorage.getItem("highScores");
+  console.log(highScoreFromLS);
+  if (highScoreFromLS == null) {
+    document.getElementById("scoreText").innerHTML = "00:00:00";
+    return;
+  }
+  document.getElementById("scoreText").innerHTML = highScoreFromLS;
 }
 
 // Convert time to a format of hours, minutes, seconds, and milliseconds
@@ -54,71 +39,61 @@ function timeToString(time) {
   return `${formattedMM}:${formattedSS}:${formattedMS}`;
 }
 
-// Create function to modify innerHTML
 function print(txt) {
   document.getElementById("display").innerHTML = txt;
-  console.log(txt);
 }
 
-// Create "start", "pause" and "reset" functions
-var currentTime = "";
-const times = [];
-
-function start() {
-  sortTimes(times);
-  timeToBeat = times[0];
-
+function startTimer() {
   startTime = Date.now() - elapsedTime;
   timerInterval = setInterval(function printTime() {
     elapsedTime = Date.now() - startTime;
     print(timeToString(elapsedTime));
     currentTime = elapsedTime;
-  }, 20);
+  }, 10);
 }
 
 function reset() {
-  times.push(currentTime);
+  let displayScore = document.getElementById("displayScore");
 
-  if (!timeToBeat) {
+  if (highScore === null) {
+    timeToBeat = currentTime;
     highScore = timeToString(currentTime);
+    displayScore.innerHTML = `Nice: ${timeToString(currentTime)}`;
   } else if (currentTime < timeToBeat) {
+    timeToBeat = currentTime;
     highScore = timeToString(currentTime);
+    displayScore.innerHTML = `New highscore: ${highScore}!!!`;
+  } else {
+    displayScore.innerHTML = `Almost: ${timeToString(currentTime)}`;
   }
-  document.getElementById("displayScore").innerHTML = timeToString(currentTime);
-  localStorage.setItem("highScore", timeToString(highScore));
+  localStorage.setItem("highScores", highScore);
+  add(topScores, currentTime);
+  sortArray(topScores);
+  console.log(topScores);
   clearInterval(timerInterval);
   print("00:00:00");
   elapsedTime = 0;
   showHighscore();
-  sortTimes(times);
-  seedScores();
 }
 
-// Create function to display buttons
-// function showButton(buttonKey) {
-//   const buttonToShow = buttonKey === "PLAY" ? playButton : pauseButton;
-//   const buttonToHide = buttonKey === "PLAY" ? pauseButton : playButton;
-//   buttonToShow.style.display = "block";
-//   buttonToHide.style.display = "none";
-// }
+// Sort array
+function sortArray(array) {
+  array.sort(function (a, b) {
+    return a - b;
+  });
+}
 
-// Create event listeners
-// let playButton = document.getElementById("playButton");
-// let pauseButton = document.getElementById("pauseButton");
-// let resetButton = document.getElementById("resetButton");
-
-// playButton.addEventListener("click", start);
-// pauseButton.addEventListener("click", pause);
-// resetButton.addEventListener("click", reset);
-
-// Score array
-let topScores = [];
+function add(array, time) {
+  array.unshift(time);
+  if (array.length >= 3) {
+    array.length = 3;
+  }
+}
 
 function seedScores() {
   sortTimes(times);
   for (let i = 0; i < 3; i++) {
     add(times[i]);
-    console.log(times[i]);
   }
   sortTimes(topScores);
   console.log(topScores);
