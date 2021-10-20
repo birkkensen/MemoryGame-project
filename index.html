@@ -5,18 +5,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
 
+    <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
 
     <title>Memory Card Game - how fun!!!!!</title>
+
 </head>
 
 <body>
-    <nav>
-
+      <nav>
         <div class="logo">
             <h1>Memory</h1>
         </div>
@@ -34,7 +34,36 @@
             <div class="line3"></div>
         </div>
     </nav>
-    <!-- The Modal -->
+    <div class="wrapper">
+        <div class="overlay intro visible">
+            <h3>World Of Memories</h3>
+            <p>Choose a theme to start:</p>
+            <div class="chooseTheme">
+                <button value="halloween" id="halloween" onclick="themePicker(this)">🎃</button>
+                <button value="animal" id="animal" onclick="themePicker(this)">🐒</button>
+                <button value="fruits" id="fruits" onclick="themePicker(this)">🍏</button>
+            </div>
+        </div>
+        <div id="victory-text" class="overlay outro">
+            <audio id="victory-sound" src="/audio/mixkit-firework-rockets-exploding-in-the-sky-2993.wav"></audio>
+            <h3>You made it!</h3>
+            <p id="displayScore"></p>
+            <p class="newGame">Choose a theme for new game!</p>
+            <div class="chooseTheme">
+                <button value="halloween" id="halloween" onclick="themePicker(this)">🎃</button>
+                <button value="animal" id="animal" onclick="themePicker(this)">🐒</button>
+                <button value="fruits" id="fruits" onclick="themePicker(this)">🍏</button>
+            </div>
+        </div>
+        <div class="flip-card-container">
+            <!-- <div class="card-flip-highScore">High Score is: <span id="scoreText"></span></div>
+            <div class="card-flip-currentTime">
+                <h2>Time</h2>
+                <h3 class="time" id="display">00:00:00</h3>
+            </div> -->
+        </div>
+    </div>
+      <!-- The Modal -->
     <div id="myModal" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
@@ -102,6 +131,8 @@
         </div>
     </div>
     <script src="scripts/script.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script src="./clock.js"></script>
 </body>
 
 </html>
