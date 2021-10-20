@@ -5,11 +5,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memory</title>
+
     <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+
+    <title>Memory Card Game - how fun!!!!!</title>
+
 </head>
 
 <body>
+      <nav>
+        <div class="logo">
+            <h1>Memory</h1>
+        </div>
+
+        <ul class="nav-links nav-active">
+            <li><a id="myBtn">about</a></li>
+            <li><a id="myBtnrules">rules</a></li>
+            <li><a href="game">game</a></li>
+        </ul>
+
+
+        <div class="burger toggle">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
     <div class="wrapper">
         <div class="overlay intro visible">
             <h3>World Of Memories</h3>
@@ -39,7 +63,74 @@
             </div> -->
         </div>
     </div>
-
+      <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="card">
+                <img src="images/Artboards_Diversity_Avatars_by_Netguru-19.png" alt="Avatar" style="width:100%">
+                <div class="container">
+                    <h4><b>Tintin Hamrin</b></h4>
+                    <p>Frontend Developer student <br>
+                        <a href="mailto:tintin.hamrin@hyperisland.se"><img src="images/mailicon.png"
+                                style="width:16px"></a>
+                    </p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="images/Artboards_Diversity_Avatars_by_Netguru-14.png" alt="Avatar" style="width:100%">
+                <div class="container">
+                    <h4><b>Birk Kensén</b></h4>
+                    <p>Frontend Developer student <br>
+                        <a href="mailto:birk.kensen@hyperisland.se"><img src="images/mailicon.png"
+                                style="width:16px"></a>
+                    </p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="images/Artboards_Diversity_Avatars_by_Netguru-11.png" alt="Avatar" style="width:100%">
+                <div class="container">
+                    <h4><b>Christina Cepeda</b></h4>
+                    <p>Frontend Developer student <br>
+                        <a href="mailto:christina.cepeda@hyperisland.se"><img src="images/mailicon.png"
+                                style="width:16px"></a>
+                    </p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="images/Artboards_Diversity_Avatars_by_Netguru-08.png" alt="Avatar" style="width:100%">
+                <div class="container">
+                    <h4><b>Johan Klingström</b></h4>
+                    <p>Frontend Developer student <br>
+                        <a href="mailto:johan.klingstrom@hyperisland.se"><img src="images/mailicon.png"
+                                style="width:16px"></a>
+                    </p>
+                </div>
+            </div>
+            <span class="close">&times;</span>
+        </div>
+    </div>
+    <!-- The Modal -->
+    <div id="rules" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="players">
+                <h1 id="title">Write your name and best time score</h1><br>
+                <fieldset>
+                    <legend>Name & Score</legend>
+                    <input id="inpKey" type="text" placeholder="Enter Name">
+                    <input id="inpValue" type="text" placeholder="Enter Time">
+                    <button type="button" id="btnInsert">Insert</button>
+                </fieldset>
+                <fieldset>
+                    <legend>Players Highscore</legend>
+                    <div id="lsOutput"></div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+    <script src="scripts/script.js"></script>
     <script type="text/javascript" src="app.js"></script>
     <script src="./clock.js"></script>
 </body>
