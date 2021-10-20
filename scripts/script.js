@@ -30,10 +30,14 @@ var modal = document.getElementById("myModal");
 
 var rulesmodal = document.getElementById("rules");
 
+
+
 // Get the button that opens the modal
 var btn = document.getElementById("myBtn");
 
 var rulesbtn = document.getElementById("myBtnrules");
+
+
 
 // Get the <span> element that closes the modal
 // var span = document.getElementsByClassName("close")[0];
@@ -49,6 +53,7 @@ rulesbtn.onclick = function () {
   updateLS();
 };
 
+
 // When the user clicks on <span> (x), close the modal
 // span.onclick = function () {
 //   modal.style.display = "none";
@@ -58,6 +63,7 @@ span.forEach((span) => {
   span.addEventListener("click", () => {
     modal.style.display = "none";
     rulesmodal.style.display = "none";
+   
   });
 });
 

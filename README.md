@@ -13,3 +13,13 @@ Todo list
 Questions for presentation.
 1. When working in the same branch; if changes are made and you save but you don't want to
 save, you still have to save?
+
+ gamemodal.style.display = "none";
+
+ gamebtn.onclick = function () {
+    gamemodal.style.display = "block";
+  };
+
+  var gamebtn = document.getElementById("myBtngame");
+
+  var gamemodal =  document.getElementById("game");
