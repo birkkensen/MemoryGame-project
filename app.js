@@ -141,6 +141,12 @@ let themes = {
 };
 
 
+const winAudio = document.querySelector("#victory-sound");
+const spookAudio = document.querySelector("#spooky-sound");
+const monkeAudio = document.querySelector("#monke-sound");
+const fruitAudio = document.querySelector("#fruit-sound");
+const introAudio = document.querySelector("#intro-sound");
+let gameSong;
 
 
 let gameState = false;
@@ -162,16 +168,29 @@ function themePicker(content) {
 const overlayIntro = document.querySelector(".overlay.intro");
 overlayIntro.addEventListener("click", () => {
   overlayIntro.classList.remove("visible");
+  stopSound(introAudio);
   startGame();
 });
   switch(content.value) {
-    case 'halloween': cardColor = 'orange'
+    case 'halloween': cardColor = 'orange';
+    gameSong = spookAudio;
+    document.getElementById("bg").style.backgroundImage = "url('spookywp.jpg')";
+    document.getElementById("bg").style.backgroundSize = "100% 100%";
     break;
-    case 'animal': cardColor = 'green'
+
+    case 'animal': cardColor = 'green';
+    gameSong = monkeAudio;
+    document.getElementById("bg").style.backgroundImage = "url('monkewp.jpg')";
+    document.getElementById("bg").style.backgroundSize = "100% 100%";
     break;
-    case 'fruits': cardColor = 'blue'
+
+    case 'fruits': cardColor = 'blue';
+    gameSong = fruitAudio;
+    document.getElementById("bg").style.backgroundImage = "url('flowerswp.jpg')";
+    document.getElementById("bg").style.backgroundSize = "100% 100%";
     break;
-    default: 'You didnt pick a theme boi'
+
+    default: 'You didnt pick a theme boi';
   }
   cardArray = duplicateArray(themes[content.value])
 }
@@ -248,10 +267,12 @@ function startGame() {
   createCards();
   setCardColor();
   shuffleCards();
+  playAudio(gameSong);
 }
 
 function restartGame() {
   resetState();
+  introSong();
   startGame();
 }
 
@@ -326,7 +347,8 @@ function shuffleCards() {
 function gameOver() {
   document.querySelector("#victory-text").classList.add("visible");
   reset();
-  playAudio();
+  stopSound(gameSong);
+  playAudio(winAudio);
 }
 
 function countMatchedCards() {
@@ -335,16 +357,26 @@ function countMatchedCards() {
     //take away true, only there temporarily
     setTimeout(() => {
       gameOver();
+      stopSound(gameSong);
     }, 500);
   }
 }
 
-function playAudio() {
-  const audio = document.querySelector("#victory-sound");
-  audio.volume = 0.5;
-  audio.playbackRate = 0.5;
+function introSong() {
+  playAudio(introAudio);
+}
+
+function playAudio(audio) {
+  audio.volume = 0.8;
+  audio.playbackRate = 1;
   audio.play();
 }
+
+function stopSound(audio) {
+  audio.currentTime = 0;
+  audio.pause();
+}
+
 
 /*function countMatchedCards() {
   const isFlipped = document.querySelectorAll(".flip");
