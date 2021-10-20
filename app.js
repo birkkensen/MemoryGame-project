@@ -145,7 +145,6 @@ const winAudio = document.querySelector("#victory-sound");
 const spookAudio = document.querySelector("#spooky-sound");
 const monkeAudio = document.querySelector("#monke-sound");
 const fruitAudio = document.querySelector("#fruit-sound");
-const introAudio = document.querySelector("#intro-sound");
 let gameSong;
 
 
@@ -272,7 +271,7 @@ function startGame() {
 
 function restartGame() {
   resetState();
-  introSong();
+  stopSound(winAudio);
   startGame();
 }
 
@@ -360,10 +359,6 @@ function countMatchedCards() {
       stopSound(gameSong);
     }, 500);
   }
-}
-
-function introSong() {
-  playAudio(introAudio);
 }
 
 function playAudio(audio) {
