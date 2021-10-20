@@ -52,6 +52,7 @@ rulesbtn.onclick = function () {
 // span.onclick = function () {
 //   modal.style.display = "none";
 // };
+// Doing a forEach loop
 span.forEach((span) => {
   span.addEventListener("click", () => {
     modal.style.display = "none";
