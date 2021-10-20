@@ -172,7 +172,7 @@ main {
 
 .close:hover,
 .close:focus {
-  color: rgba(88, 88, 99, 0);
+  color: rgba(38, 38, 44, 0);
   text-decoration: none;
   cursor: pointer;
 }

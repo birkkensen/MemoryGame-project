@@ -70,6 +70,8 @@ span.forEach((span) => {
 window.onclick = function (event) {
   if (event.target == modal) {
     modal.style.display = "none";
+    rulesmodal.style.display = "none";
+
   }
 };
 
