@@ -60,12 +60,20 @@ span.forEach((span) => {
   });
 });
 
+
+  
+
+
+
+
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
 };
+
+
 
 // LocalStorage
 
@@ -78,8 +86,6 @@ btnInsert.onclick = function () {
   const key = inpKey.value;
   const value = inpValue.value;
 
-  console.log(key);
-  console.log(value);
 
   if (key && value) {
     localStorage.setItem(key, value);
