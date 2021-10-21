@@ -12,9 +12,9 @@ const navSlide = () => {
         link.style.animation = "";
       } else {
         link.style.animation = `navLinkFade 0.5s ease forwards ${
-          index / 7 + 1.5
+          index / 7 + 0.4
         }s`;
-        console.log(index / 7);
+        console.log(index / 7 + 0.1);
       }
     });
     //burger animation
@@ -30,14 +30,10 @@ var modal = document.getElementById("myModal");
 
 var rulesmodal = document.getElementById("rules");
 
-
-
 // Get the button that opens the modal
 var btn = document.getElementById("myBtn");
 
 var rulesbtn = document.getElementById("myBtnrules");
-
-
 
 // Get the <span> element that closes the modal
 // var span = document.getElementsByClassName("close")[0];
@@ -53,7 +49,6 @@ rulesbtn.onclick = function () {
   updateLS();
 };
 
-
 // When the user clicks on <span> (x), close the modal
 // span.onclick = function () {
 //   modal.style.display = "none";
@@ -63,7 +58,6 @@ span.forEach((span) => {
   span.addEventListener("click", () => {
     modal.style.display = "none";
     rulesmodal.style.display = "none";
-   
   });
 });
 
@@ -101,4 +95,9 @@ function updateLS() {
     const value = localStorage.getItem(key);
     lsOutput.innerHTML += `${key}: ${value}<br />`;
   }
+}
+
+function clearLS() {
+  localStorage.clear();
+  lsOutput.innerHTML = "";
 }

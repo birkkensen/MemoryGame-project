@@ -188,17 +188,23 @@ function createCards() {
 function setCardColor() {
   const flipCardFront = document.querySelectorAll(".flip-card-front");
   const flipCardBack = document.querySelectorAll(".flip-card-back");
-
+  const navbar = document.querySelector("nav");
   flipCardFront.forEach((card) => {
     switch (cardColor) {
       case "orange":
         card.classList.add("orange");
+        nav.style.backgroundColor = "#ebb66d";
+        navbar.style.backgroundColor = "#ebb66d";
         break;
       case "green":
         card.classList.add("green");
+        nav.style.backgroundColor = "#8bd388";
+        navbar.style.backgroundColor = "#8bd388";
         break;
       case "blue":
         card.classList.add("blue");
+        nav.style.backgroundColor = "#5b91f7";
+        navbar.style.backgroundColor = "#5b91f7";
         break;
     }
   });
@@ -233,7 +239,7 @@ function createTimerAndHighScore() {
   document.querySelector(".flip-card-container").innerHTML += `
 <div class="card-flip-highScore">High Score is: <span id="scoreText"></span></div>
 <div class="card-flip-currentTime">
-    <h2>Time</h2>
+    <h2>Timer:</h2>
     <h3 class="time" id="display">00:00:00</h3>
 </div>
 `;

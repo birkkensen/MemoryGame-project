@@ -41,7 +41,7 @@ body {
   /* font-family: "Poppins", sans-serif; */
 }
 .logo {
-  color: rgb(255, 255, 255);
+  color: black;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 20px;
@@ -50,34 +50,41 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: red;
+  background-color: transparent;
   padding: 20px;
   font-family: "Poppins", sans-serif;
 }
 
 .nav-links {
   position: absolute;
-  right: 0px;
   height: 100%;
   width: 25%;
-  top: 9.5vh;
+  top: 0;
+  right: 0;
+  bottom: 0;
   background-color: red;
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
   transform: translateX(100%);
   transition: transform 0.3s ease-in;
-  padding-top: 3vh;
-  z-index: 999;
+  /* padding-top: 3vh; */
+  z-index: 98;
 }
-@media screen and (min-width: 1024px) {
+@media screen and (max-width: 571px) {
   .nav-links {
-    top: 2vh;
+    width: 50%;
   }
 }
 
+.nav-links li {
+  list-style: none;
+  opacity: 0;
+}
+
 .nav-links a {
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   text-decoration: none;
   letter-spacing: 3px;
   font-size: 16px;
@@ -86,15 +93,10 @@ nav {
   cursor: pointer;
 }
 
-.nav-links li {
-  list-style: none;
-  padding: 4vw;
-}
-
 .burger div {
   width: 25px;
   height: 3px;
-  background-color: white;
+  background-color: black;
   margin: 5px;
   transition: all 0.3s ease;
 }
@@ -105,7 +107,7 @@ nav {
 
 .burger {
   display: block;
-  z-index: 1000;
+  z-index: 99;
   cursor: pointer;
 }
 
@@ -119,6 +121,7 @@ nav {
     transform: translateX(0px);
   }
 }
+
 .toggle .line1 {
   transform: rotate(-45deg) translate(-5px, 6px);
 }

@@ -66,7 +66,7 @@ function reset() {
   } else {
     displayScore.innerHTML = `Almost: ${timeToString(currentTime)}`;
   }
-  localStorage.setItem("highScores", highScore);
+  localStorage.setItem("score", highScore);
   add(topScores, currentTime);
   sortArray(topScores);
   console.log(topScores);
