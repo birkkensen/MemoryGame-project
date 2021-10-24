@@ -30,10 +30,14 @@ var modal = document.getElementById("myModal");
 
 var rulesmodal = document.getElementById("rules");
 
+var gameModal = document.getElementById("game");
+
 // Get the button that opens the modal
 var btn = document.getElementById("myBtn");
 
 var rulesbtn = document.getElementById("myBtnrules");
+
+var gameBtn = document.getElementById("myGameBtn");
 
 // Get the <span> element that closes the modal
 // var span = document.getElementsByClassName("close")[0];
@@ -49,6 +53,10 @@ rulesbtn.onclick = function () {
   updateLS();
 };
 
+gameBtn.onclick = function () {
+  gameModal.style.display = "block";
+};
+
 // When the user clicks on <span> (x), close the modal
 // span.onclick = function () {
 //   modal.style.display = "none";
@@ -58,6 +66,7 @@ span.forEach((span) => {
   span.addEventListener("click", () => {
     modal.style.display = "none";
     rulesmodal.style.display = "none";
+    gameModal.style.display = "none";
   });
 });
 
@@ -66,6 +75,7 @@ window.onclick = function (event) {
   if (event.target == modal || event.target == rulesmodal) {
     modal.style.display = "none";
     rulesmodal.style.display = "none";
+    gameModal.style.display = "none";
   }
 };
 

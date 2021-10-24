@@ -9,7 +9,7 @@ let topScores = [];
 
 // Push highscore to HTML
 function showHighscore() {
-  let highScoreFromLS = localStorage.getItem("highScores");
+  let highScoreFromLS = localStorage.getItem("score");
   console.log(highScoreFromLS);
   if (highScoreFromLS == null) {
     document.getElementById("scoreText").innerHTML = "00:00:00";
